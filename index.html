@@ -4,46 +4,454 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Генератор промптів для вивчення англійської</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f7f4;--card:#fff;--ink:#1d2a26;--mut:#5d6b66;--line:#d6ddd8;--acc:#1f6f5c;--accink:#fff;--sel:#e3f1ec;--code:#eef1ee;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a18;--card:#1c2421;--ink:#e6ece9;--mut:#9aaaa3;--line:#33403b;--acc:#5fc4a8;--accink:#0f1a16;--sel:#22362f;--code:#101614}}
-:root[data-theme="dark"]{--bg:#141a18;--card:#1c2421;--ink:#e6ece9;--mut:#9aaaa3;--line:#33403b;--acc:#5fc4a8;--accink:#0f1a16;--sel:#22362f;--code:#101614}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*,*:before,*:after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Source Serif 4",Georgia,"Times New Roman",serif;counter-reset:st}
-main{max-width:760px;margin:0 auto;padding:28px 18px 56px}
-h1{font:700 1.7rem/1.2 "Source Serif 4",Georgia,serif;margin:0 0 6px}
-.lead{color:var(--mut);margin:0 0 26px}
-section{margin:0 0 26px}
-section:not([hidden]){counter-increment:st}
-h2{font:600 1.05rem/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0 0 10px}
-h2:before{content:counter(st)". ";color:var(--acc)}
-.hint{font:.85rem/1.4 system-ui,sans-serif;color:var(--mut);margin:-4px 0 10px}
-.opts{display:flex;flex-wrap:wrap;gap:8px}
-.opts label,.cards label{cursor:pointer;position:relative}
-input[type=radio]{position:absolute;opacity:0;pointer-events:none}
-.opts span{display:block;padding:9px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font:.95rem/1.3 system-ui,sans-serif}
-input:checked+span{background:var(--sel);border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
-input:focus-visible+span{outline:2px solid var(--acc);outline-offset:2px}
-.cards{display:grid;gap:8px}
-.cards span{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font:.92rem/1.45 system-ui,sans-serif}
-.cards b{display:block;font-size:1rem}
-.cards em{font-style:normal;color:var(--mut);font-size:.82rem}
-.fl{margin:0 0 14px}
-.fl label{display:block;font:600 .9rem/1.3 system-ui,sans-serif;margin-bottom:5px}
-.fl .o{font-weight:400;color:var(--mut)}
-input[type=text],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:.95rem/1.4 system-ui,sans-serif}
-textarea{min-height:96px;resize:vertical}
-.fl select+input{margin-top:6px}
-pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:14px;white-space:pre-wrap;word-break:break-word;font:.84rem/1.5 ui-monospace,Menlo,Consolas,monospace;max-height:460px;overflow:auto;margin:0 0 12px}
-button{font:600 1rem/1 system-ui,sans-serif;padding:13px 20px;border:0;border-radius:8px;background:var(--acc);color:var(--accink);cursor:pointer}
-button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.note{font:.85rem/1.5 system-ui,sans-serif;color:var(--mut);margin-top:12px}
-[hidden]{display:none!important}
+:root {
+  --bg: #0d1117;
+  --card: rgba(22, 27, 34, 0.75);
+  --card-hover: rgba(33, 38, 45, 0.85);
+  --ink: #f0f6fc;
+  --mut: #8b949e;
+  --line: rgba(240, 246, 252, 0.12);
+  --acc: #2ea043;
+  --acc-glow: rgba(46, 160, 67, 0.35);
+  --acc-bright: #3fb950;
+  --accink: #ffffff;
+  --sel: rgba(46, 160, 67, 0.18);
+  --code: #090d12;
+  --accent-blue: #58a6ff;
+  --blur: blur(16px);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f4f6f8;
+    --card: rgba(255, 255, 255, 0.82);
+    --card-hover: rgba(255, 255, 255, 0.95);
+    --ink: #1c2128;
+    --mut: #57606a;
+    --line: rgba(27, 31, 36, 0.12);
+    --acc: #0969da;
+    --acc-glow: rgba(9, 105, 218, 0.25);
+    --acc-bright: #1a7fbc;
+    --accink: #ffffff;
+    --sel: rgba(9, 105, 218, 0.08);
+    --code: #f6f8fa;
+    --accent-blue: #0969da;
+  }
+}
+
+:root[data-theme="light"] {
+  --bg: #f4f6f8;
+  --card: rgba(255, 255, 255, 0.82);
+  --card-hover: rgba(255, 255, 255, 0.95);
+  --ink: #1c2128;
+  --mut: #57606a;
+  --line: rgba(27, 31, 36, 0.12);
+  --acc: #0969da;
+  --acc-glow: rgba(9, 105, 218, 0.25);
+  --acc-bright: #1a7fbc;
+  --accink: #ffffff;
+  --sel: rgba(9, 105, 218, 0.08);
+  --code: #f6f8fa;
+  --accent-blue: #0969da;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  counter-reset: st;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background Animated Gradient Mesh */
+.bg-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: float 20s infinite ease-in-out alternate;
+}
+
+.blob-1 {
+  width: 450px;
+  height: 450px;
+  background: var(--accent-blue);
+  top: -100px;
+  right: -100px;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--acc);
+  bottom: -150px;
+  left: -100px;
+  animation-delay: -7s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 60px) scale(1.1); }
+  100% { transform: translate(-30px, -20px) scale(0.95); }
+}
+
+main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font: 700 2.2rem/1.25 "Source Serif 4", Georgia, serif;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--ink) 30%, var(--mut));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lead {
+  color: var(--mut);
+  margin: 0 0 32px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+section {
+  margin: 0 0 28px;
+  background: var(--card);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+section:hover {
+  border-color: rgba(240, 246, 252, 0.22);
+}
+
+section:not([hidden]) {
+  counter-increment: st;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  font: 600 1.15rem/1.3 "Plus Jakarta Sans", sans-serif;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+h2:before {
+  content: counter(st);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--sel);
+  color: var(--acc-bright);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.hint {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--mut);
+  margin: -4px 0 14px;
+}
+
+/* Radio buttons & Cards styling */
+.opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.opts label, .cards label {
+  cursor: pointer;
+  position: relative;
+}
+
+input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opts span {
+  display: block;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  font-weight: 500;
+  font-size: 0.93rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.opts label:hover span {
+  border-color: var(--acc);
+  background: var(--sel);
+  transform: translateY(-1px);
+}
+
+input:checked + span {
+  background: var(--sel);
+  border-color: var(--acc);
+  color: var(--acc-bright);
+  box-shadow: 0 0 0 1px var(--acc), 0 4px 12px var(--acc-glow);
+}
+
+input:focus-visible + span {
+  outline: 2px solid var(--acc-bright);
+  outline-offset: 2px;
+}
+
+.cards {
+  display: grid;
+  gap: 10px;
+}
+
+.cards span {
+  display: block;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.25s ease;
+}
+
+.cards label:hover span {
+  border-color: var(--acc);
+  background: var(--card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cards b {
+  display: block;
+  font-size: 1.02rem;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+
+.cards em {
+  font-style: normal;
+  color: var(--accent-blue);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.cards div {
+  color: var(--mut);
+  font-size: 0.9rem;
+}
+
+/* Inputs, Textareas, Selects */
+.fl {
+  margin: 0 0 16px;
+}
+
+.fl label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.fl .o {
+  font-weight: 400;
+  color: var(--mut);
+}
+
+input[type=text], textarea, select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+input[type=text]:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--acc-bright);
+  box-shadow: 0 0 0 3px var(--acc-glow);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.fl select + input {
+  margin-top: 8px;
+}
+
+/* Output Code Box */
+pre {
+  background: var(--code);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font: 0.88rem/1.6 "JetBrains Mono", ui-monospace, monospace;
+  max-height: 480px;
+  overflow: auto;
+  margin: 0 0 16px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Shimmer Modern Button */
+.btn-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+button {
+  position: relative;
+  font: 600 0.98rem/1 "Plus Jakarta Sans", sans-serif;
+  padding: 14px 24px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--acc-bright), var(--acc));
+  color: var(--accink);
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 4px 16px var(--acc-glow);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--acc-glow);
+  filter: brightness(1.08);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Button Shimmer Effect */
+button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: rotate(30deg) translateY(-100%);
+  animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: rotate(30deg) translateY(-100%); }
+  20%, 100% { transform: rotate(30deg) translateY(100%); }
+}
+
+button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.note {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--mut);
+  margin-top: 14px;
+}
+
+#status {
+  font-weight: 600;
+  color: var(--acc-bright);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Custom Scrollbar for pre */
+pre::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+pre::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
 </style>
 </head>
 <body>
+
+<!-- Animated Background Canvas Blobs -->
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+</div>
+
 <main>
 <h1>Генератор промптів для вивчення англійської</h1>
 <p class="lead">Оберіть категорію й конкретний промпт, налаштуйте рівень і режим. У кінці з’явиться повний готовий промпт: скопіюйте його в ChatGPT, Claude чи Gemini.</p>
@@ -56,10 +464,16 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 <section id="s6" hidden><h2>Уточнення</h2><div id="fields"></div></section>
 <section id="s7" hidden><h2>Ваш промпт</h2>
 <pre id="out" aria-live="polite"></pre>
-<button type="button" id="copy">Скопіювати промпт</button>
+<div class="btn-wrapper">
+  <button type="button" id="copy">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+    Скопіювати промпт
+  </button>
+</div>
 <p class="note" id="status" role="status"></p>
 <p class="note">ШІ може помилятися, а між чатами він вас, як правило, не пам’ятає: важливі результати зберігайте самі. Це навчальна допомога, а не заміна викладача. Вимову ШІ надійно не оцінює.</p></section>
 </main>
+
 <script>
 var CATS=[["start","З чого почати"],["lex","Лексика"],["gram","Граматика"],["wr","Письмо"],["read","Читання"],["exp","Висловити думку"],["goal","Ситуації й робота"],["rev","Повторення"],["speak","Говоріння"]];
 var LV=["A1","A2","B1","B2","C1"];
@@ -964,7 +1378,7 @@ WHEN I ASK "what does X mean?":
 5. Say if it is regional, informal, rude, or outdated.
 Then continue the conversation. Do not invent meanings. If you are not sure about an expression, say so.
 
-ADULT MODE (applies only if I wrote ON): I am an adult (18+). You may use mild and moderate swearing and informal adult language where a real conversation would, but do not use it in every message, and do not use slurs, hate speech, or graphic sexual content. If I ask about a strong or offensive word, explain it like a teacher: the meaning, the closest Ukrainian equivalent(s) (or say there is none), how strong it is (mild / strong / very offensive), when it is risky, and a milder alternative. If Adult mode is OFF, avoid swearing and keep the language clean.
+ADULT MODE (applies only if I wrote ON): I am an adult (18+). You may use mild and moderate swearing and informal adult language where a real conversation would, but do not use it in every message, and do not use slurs, hate speech, or graphic sexual content. If I ask about a strong or offensive word, explain it like a teacher: the meaning, the closest Ukrainian equivalent(s) (or say there is none), how strong it is (mild / strong / very offensive), when it is acceptable and when it is risky, and 1-2 milder alternatives. Keep examples short and not graphic. If it is a slur against a group of people, explain what it means and why it is offensive so I can recognise it, but do not encourage me to use it. If Adult mode is OFF and an item is vulgar, say so in one short line and tell me I can switch Adult mode ON.
 
 ENDING: When I write "finish", or after about 12-15 exchanges, give a recap in my chosen language:
 1. 5 natural expressions that appeared in our conversation, each with: the meaning, a short Ukrainian equivalent if accurate, a register label (neutral / informal / slang / rude), and a note if it is regional or age-specific.
@@ -1117,36 +1531,149 @@ HOW THIS WORKS:
 
 Begin now.`},
 /*END*/];
+
 var $=function(i){return document.getElementById(i)};
 var S={c:null,p:null,lv:null,lang:null,mode:null,v:[]};
+
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
-function radios(box,name,items,sel,cb){box.innerHTML="";items.forEach(function(it){var lab=el("label"),i=el("input");i.type="radio";i.name=name;i.value=it[0];if(it[0]===sel)i.checked=true;i.onchange=function(){cb(it[0])};lab.appendChild(i);lab.appendChild(el("span","",it[1]));box.appendChild(lab)})}
-function assemble(p,s,vals){vals=vals||[];
-var a="About me:\n- "+(p.ll||"My level")+": "+s.lv+"\n- Language for explanations: "+s.lang+"\n";
-if(p.adult)a+="- Adult mode: "+(s.mode||"OFF")+"\n";
-(p.f||[]).forEach(function(f,i){var v=f.t==="s"?(vals[i]||f.o[0]):(vals[i]||"");if(!v){if(f.opt)return;v=f.ph}a+="- "+f.l+":"+(f.t==="a"?"\n":" ")+v+"\n"});
-var ls=p.ls===undefined?" If my level is A1-A2 and I chose Ukrainian, write task instructions in Ukrainian too.":(p.ls?" "+p.ls:"");
-var lang="IMPORTANT LANGUAGE RULE: Write ALL of your own text ("+(p.lt||"instructions, hints, explanations, feedback, summaries")+") in the language I chose. Only "+p.en+" in English."+ls;
-var ad="ADULT MODE (applies only if I wrote ON): I am an adult (18+) and I am learning real-life English, including swearing, slang, and sexual or offensive language. If "+(p.adw||"a word or expression")+" is vulgar, offensive, sexual, or taboo: do not refuse and do not only say \"this is a bad word\". Explain it like a language teacher: the meaning in plain language, the closest Ukrainian equivalent(s) (or say there is none), how strong it is (mild / strong / very offensive), when it is acceptable and when it is risky, and 1-2 milder alternatives. Keep examples short and not graphic. If it is a slur against a group of people, explain what it means and why it is offensive so I can recognise it, but do not encourage me to use it. If Adult mode is OFF and an item is vulgar, say so in one short line and tell me I can switch Adult mode ON.";
-return p.b.replace("{ABOUT}",function(){return a.trim()}).replace("{LANG}",function(){return lang}).replace("{CHECK}",function(){return CHECK}).replace("{ADULT}",function(){return ad})}
+
+function radios(box,name,items,sel,cb){
+  box.innerHTML="";
+  items.forEach(function(it){
+    var lab=el("label"),i=el("input");
+    i.type="radio";i.name=name;i.value=it[0];
+    if(it[0]===sel)i.checked=true;
+    i.onchange=function(){cb(it[0])};
+    lab.appendChild(i);
+    lab.appendChild(el("span","",it[1]));
+    box.appendChild(lab);
+  });
+}
+
+function assemble(p,s,vals){
+  vals=vals||[];
+  var a="About me:\n- "+(p.ll||"My level")+": "+s.lv+"\n- Language for explanations: "+s.lang+"\n";
+  if(p.adult)a+="- Adult mode: "+(s.mode||"OFF")+"\n";
+  (p.f||[]).forEach(function(f,i){
+    var v=f.t==="s"?(vals[i]||f.o[0]):(vals[i]||"");
+    if(!v){if(f.opt)return;v=f.ph}
+    a+="- "+f.l+":"+(f.t==="a"?"\n":" ")+v+"\n";
+  });
+  var ls=p.ls===undefined?" If my level is A1-A2 and I chose Ukrainian, write task instructions in Ukrainian too.":(p.ls?" "+p.ls:"");
+  var lang="IMPORTANT LANGUAGE RULE: Write ALL of your own text ("+(p.lt||"instructions, hints, explanations, feedback, summaries")+") in the language I chose. Only "+p.en+" in English."+ls;
+  var ad="ADULT MODE (applies only if I wrote ON): I am an adult (18+) and I am learning real-life English, including swearing, slang, and sexual or offensive language. If "+(p.adw||"a word or expression")+" is vulgar, offensive, sexual, or taboo: do not refuse and do not only say \"this is a bad word\". Explain it like a language teacher: the meaning in plain language, the closest Ukrainian equivalent(s) (or say there is none), how strong it is (mild / strong / very offensive), when it is acceptable and when it is risky, and 1-2 milder alternatives. Keep examples short and not graphic. If it is a slur against a group of people, explain what it means and why it is offensive so I can recognise it, but do not encourage me to use it. If Adult mode is OFF and an item is vulgar, say so in one short line and tell me I can switch Adult mode ON.";
+  return p.b.replace("{ABOUT}",function(){return a.trim()}).replace("{LANG}",function(){return lang}).replace("{CHECK}",function(){return CHECK}).replace("{ADULT}",function(){return ad});
+}
+
 function ready(){return S.p&&S.lv&&S.lang&&(!S.p.adult||S.mode)}
 function render(){if(!ready())return;$("out").textContent=assemble(S.p,S,S.v);$("status").textContent=""}
-function reveal(){$("s2").hidden=!S.c;$("s3").hidden=!S.p;$("s4").hidden=!(S.p&&S.lv);$("s5").hidden=!(S.p&&S.p.adult&&S.lang);$("s6").hidden=!ready()||!(S.p.f||[]).length;$("s7").hidden=!ready()}
-function levels(){var r=S.p.lv.split("-"),a=LV.indexOf(r[0]),z=LV.indexOf(r[1]);var it=LV.slice(a,z+1).concat(["not sure"]).map(function(x){return[x,x]});if(S.lv&&!it.some(function(x){return x[0]===S.lv}))S.lv=null;radios($("level"),"lv",it,S.lv,function(v){S.lv=v;reveal();render()})}
-function fields(){var b=$("fields");b.innerHTML="";S.v=[];(S.p.f||[]).forEach(function(f,i){var w=el("div","fl"),l=el("label","",f.l);if(f.opt){l.appendChild(el("span","o"," (необов’язково)"))}w.appendChild(l);var x;
-if(f.t==="s"){x=el("select");f.o.forEach(function(o){x.appendChild(el("option","",o)).value=o});x.onchange=function(){S.v[i]=x.value;render()};w.appendChild(x)}
-else if(f.t==="c"){x=el("select");var z=el("option","","— обрати зі списку —");z.value="";x.appendChild(z);f.o.forEach(function(o){x.appendChild(el("option","",o)).value=o});var y=el("input");y.type="text";y.placeholder="або впишіть своє";var u=function(){S.v[i]=y.value.trim()||x.value;render()};x.onchange=u;y.oninput=u;w.appendChild(x);w.appendChild(y)}
-else{x=el(f.t==="a"?"textarea":"input");if(f.t==="t")x.type="text";x.placeholder=f.ph;x.oninput=function(){S.v[i]=x.value.trim();render()};w.appendChild(x)}
-b.appendChild(w)})}
-function list(){var b=$("plist");b.innerHTML="";P.filter(function(p){return p.c===S.c}).forEach(function(p){var lab=el("label"),i=el("input");i.type="radio";i.name="prompt";i.onchange=function(){S.p=p;levels();fields();reveal();render()};var s=el("span");s.appendChild(el("b","",p.n));s.appendChild(el("em","",p.lv+" · "+p.t));s.appendChild(el("div","",p.d));lab.appendChild(i);lab.appendChild(s);b.appendChild(lab)})}
-function copy(){var t=$("out").textContent,st=$("status");
-function ok(){st.textContent="Скопійовано. Вставте промпт у новий чат."}
-function fb(){try{var a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var r=document.execCommand("copy");document.body.removeChild(a);if(r)ok();else st.textContent="Не вдалося скопіювати автоматично. Виділіть текст у рамці й скопіюйте вручну."}catch(e){st.textContent="Не вдалося скопіювати автоматично. Виділіть текст у рамці й скопіюйте вручну."}}
-try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}}
-radios($("cats"),"cat",CATS.filter(function(c){return P.some(function(p){return p.c===c[0]})}).map(function(c){return[c[0],c[1]+" ("+P.filter(function(p){return p.c===c[0]}).length+")"]}),null,function(v){S.c=v;S.p=null;S.lv=null;S.v=[];list();reveal()});
+function reveal(){
+  $("s2").hidden=!S.c;
+  $("s3").hidden=!S.p;
+  $("s4").hidden=!(S.p&&S.lv);
+  $("s5").hidden=!(S.p&&S.p.adult&&S.lang);
+  $("s6").hidden=!ready()||!(S.p.f||[]).length;
+  $("s7").hidden=!ready();
+}
+
+function levels(){
+  var r=S.p.lv.split("-"),a=LV.indexOf(r[0]),z=LV.indexOf(r[1]);
+  var it=LV.slice(a,z+1).concat(["not sure"]).map(function(x){return[x,x]});
+  if(S.lv&&!it.some(function(x){return x[0]===S.lv}))S.lv=null;
+  radios($("level"),"lv",it,S.lv,function(v){S.lv=v;reveal();render()});
+}
+
+function fields(){
+  var b=$("fields");b.innerHTML="";S.v=[];
+  (S.p.f||[]).forEach(function(f,i){
+    var w=el("div","fl"),l=el("label","",f.l);
+    if(f.opt){l.appendChild(el("span","o"," (необов’язково)"))}
+    w.appendChild(l);
+    var x;
+    if(f.t==="s"){
+      x=el("select");
+      f.o.forEach(function(o){x.appendChild(el("option","",o)).value=o});
+      x.onchange=function(){S.v[i]=x.value;render()};
+      w.appendChild(x);
+    } else if(f.t==="c"){
+      x=el("select");
+      var z=el("option","","— обрати зі списку —");z.value="";
+      x.appendChild(z);
+      f.o.forEach(function(o){x.appendChild(el("option","",o)).value=o});
+      var y=el("input");y.type="text";y.placeholder="або впишіть своє";
+      var u=function(){S.v[i]=y.value.trim()||x.value;render()};
+      x.onchange=u;y.oninput=u;
+      w.appendChild(x);w.appendChild(y);
+    } else {
+      x=el(f.t==="a"?"textarea":"input");
+      if(f.t==="t")x.type="text";
+      x.placeholder=f.ph;
+      x.oninput=function(){S.v[i]=x.value.trim();render()};
+      w.appendChild(x);
+    }
+    b.appendChild(w);
+  });
+}
+
+function list(){
+  var b=$("plist");b.innerHTML="";
+  P.filter(function(p){return p.c===S.c}).forEach(function(p){
+    var lab=el("label"),i=el("input");
+    i.type="radio";i.name="prompt";
+    i.onchange=function(){S.p=p;levels();fields();reveal();render()};
+    var s=el("span");
+    s.appendChild(el("b","",p.n));
+    s.appendChild(el("em","",p.lv+" · "+p.t));
+    s.appendChild(el("div","",p.d));
+    lab.appendChild(i);lab.appendChild(s);
+    b.appendChild(lab);
+  });
+}
+
+function copy(){
+  var t=$("out").textContent, st=$("status"), btn=$("copy");
+  function ok(){
+    st.textContent="Скопійовано. Вставте промпт у новий чат.";
+    btn.style.background = "linear-gradient(135deg, #238636, #2ea043)";
+    btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Скопійовано!`;
+    setTimeout(function(){
+      btn.style.background = "";
+      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Скопіювати промпт`;
+    }, 2500);
+  }
+  function fb(){
+    try{
+      var a=document.createElement("textarea");
+      a.value=t;a.style.position="fixed";a.style.opacity="0";
+      document.body.appendChild(a);a.select();
+      var r=document.execCommand("copy");
+      document.body.removeChild(a);
+      if(r)ok();
+      else st.textContent="Не вдалося скопіювати автоматично. Виділіть текст у рамці й скопіюйте вручну.";
+    }catch(e){
+      st.textContent="Не вдалося скопіювати автоматично. Виділіть текст у рамці й скопіюйте вручну.";
+    }
+  }
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}
+}
+
+radios($("cats"),"cat",CATS.filter(function(c){return P.some(function(p){return p.c===c[0]})}).map(function(c){return[c[0],c[1]+" ("+P.filter(function(p){return p.c===c[0]}).length+")"]}),null,function(v){
+  S.c=v;S.p=null;S.lv=null;S.v=[];list();reveal();
+});
+
 radios($("lang"),"lang",LANGS,null,function(v){S.lang=v;reveal();render()});
 radios($("mode"),"mode",MODES,null,function(v){S.mode=v;reveal();render()});
 $("copy").onclick=copy;
+
+// Interactive Card Spotlight on Mousemove
+document.addEventListener('mousemove', function(e) {
+  document.querySelectorAll('section').forEach(function(sec) {
+    var rect = sec.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    sec.style.backgroundImage = `radial-gradient(400px circle at ${x}px ${y}px, rgba(255,255,255,0.035), transparent 40%)`;
+  });
+});
 </script>
 </body>
 </html>
