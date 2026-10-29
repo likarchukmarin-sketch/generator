@@ -9,19 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #04120e;
-  --card: rgba(10, 31, 24, 0.75);
-  --card-hover: rgba(16, 44, 34, 0.85);
+  --bg: #022c22;
+  --card: rgba(6, 78, 59, 0.65);
+  --card-hover: rgba(6, 78, 59, 0.82);
   --ink: #e6f5f0;
-  --mut: #7ca698;
-  --line: rgba(74, 222, 128, 0.15);
+  --mut: #a7f3d0;
+  --line: rgba(52, 211, 153, 0.25);
   --acc: #10b981;
-  --acc-glow: rgba(16, 185, 129, 0.35);
+  --acc-glow: rgba(16, 185, 129, 0.4);
   --acc-bright: #34d399;
   --accink: #022c22;
-  --sel: rgba(16, 185, 129, 0.18);
-  --code: #021a14;
-  --accent-green: #4ade80;
+  --sel: rgba(16, 185, 129, 0.25);
+  --code: rgba(2, 44, 34, 0.85);
+  --accent-green: #6ee7b7;
   --blur: blur(16px);
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
@@ -29,37 +29,19 @@
 }
 
 :root[data-theme="light"] {
-  --bg: #f0fdf4;
-  --card: rgba(255, 255, 255, 0.85);
-  --card-hover: rgba(255, 255, 255, 0.95);
-  --ink: #062c19;
-  --mut: #3b7a57;
-  --line: rgba(5, 150, 105, 0.18);
+  --bg: #ecfdf5;
+  --card: rgba(255, 255, 255, 0.75);
+  --card-hover: rgba(255, 255, 255, 0.9);
+  --ink: #064e3b;
+  --mut: #047857;
+  --line: rgba(5, 150, 105, 0.2);
   --acc: #059669;
-  --acc-glow: rgba(5, 150, 105, 0.25);
+  --acc-glow: rgba(5, 150, 105, 0.2);
   --acc-bright: #10b981;
   --accink: #ffffff;
-  --sel: rgba(16, 185, 129, 0.12);
-  --code: #ecfdf5;
+  --sel: rgba(16, 185, 129, 0.15);
+  --code: #f0fdf4;
   --accent-green: #047857;
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #f0fdf4;
-    --card: rgba(255, 255, 255, 0.85);
-    --card-hover: rgba(255, 255, 255, 0.95);
-    --ink: #062c19;
-    --mut: #3b7a57;
-    --line: rgba(5, 150, 105, 0.18);
-    --acc: #059669;
-    --acc-glow: rgba(5, 150, 105, 0.25);
-    --acc-bright: #10b981;
-    --accink: #ffffff;
-    --sel: rgba(16, 185, 129, 0.12);
-    --code: #ecfdf5;
-    --accent-green: #047857;
-  }
 }
 
 html {
@@ -79,50 +61,19 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: color 0.4s ease;
 }
 
-/* Background Animated Gradient Mesh */
-.bg-blobs {
+/* Glass Tiles Canvas Background */
+#gt-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  overflow: hidden;
+  display: block;
   pointer-events: none;
-}
-
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  animation: float 20s infinite ease-in-out alternate;
-}
-
-.blob-1 {
-  width: 450px;
-  height: 450px;
-  background: var(--accent-green);
-  top: -100px;
-  right: -100px;
-}
-
-.blob-2 {
-  width: 500px;
-  height: 500px;
-  background: var(--acc);
-  bottom: -150px;
-  left: -100px;
-  animation-delay: -7s;
-}
-
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, 60px) scale(1.1); }
-  100% { transform: translate(-30px, -20px) scale(0.95); }
 }
 
 main {
@@ -152,6 +103,7 @@ main {
   align-items: center;
   justify-content: center;
   backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
   transition: all 0.25s ease;
 }
 
@@ -164,9 +116,7 @@ h1 {
   font: 700 2.2rem/1.25 "Source Serif 4", Georgia, serif;
   margin: 0 0 10px;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--ink) 30%, var(--mut));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--ink);
 }
 
 .lead {
@@ -184,7 +134,7 @@ section {
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 22px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
@@ -256,7 +206,7 @@ input[type=radio] {
   padding: 10px 16px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   font-weight: 500;
   font-size: 0.93rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -290,7 +240,7 @@ input:focus-visible + span {
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   transition: all 0.25s ease;
 }
 
@@ -346,7 +296,7 @@ input[type=text], textarea, select {
   padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.15);
   color: var(--ink);
   font: inherit;
   font-size: 0.95rem;
@@ -357,7 +307,7 @@ input[type=text]:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--acc-bright);
   box-shadow: 0 0 0 3px var(--acc-glow);
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 textarea {
@@ -381,7 +331,7 @@ pre {
   max-height: 480px;
   overflow: auto;
   margin: 0 0 16px;
-  box-shadow: inset 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
 }
 
 /* Shimmer Modern Button */
@@ -417,7 +367,6 @@ button.action-btn:active {
   transform: translateY(1px);
 }
 
-/* Button Shimmer Effect */
 button.action-btn::after {
   content: '';
   position: absolute;
@@ -468,11 +417,8 @@ pre::-webkit-scrollbar-thumb {
 </head>
 <body>
 
-<!-- Animated Background Canvas Blobs -->
-<div class="bg-blobs">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-</div>
+<!-- Glass Tiles Canvas -->
+<canvas id="gt-canvas" aria-hidden="true"></canvas>
 
 <main>
 <div class="top-bar">
@@ -504,10 +450,153 @@ pre::-webkit-scrollbar-thumb {
 </main>
 
 <script>
+/* Glass Tiles WebGL Engine */
+(function setupGlassTiles() {
+  var cv = document.getElementById("gt-canvas");
+  var gl = cv.getContext("webgl", { antialias: false, alpha: false });
+  if (!gl) return;
+
+  var VERT = "attribute vec2 a; void main(){ gl_Position = vec4(a, 0.0, 1.0); }";
+  var FRAG = "precision highp float;\n" +
+    "uniform vec2 uRes; uniform float uTime; uniform float uCols; uniform vec2 uMouse; uniform float uLamp;\n" +
+    "uniform vec3 uGlow; uniform vec3 uDeep; uniform vec3 uGround;\n" +
+    "float light(vec2 p){\n" +
+    "  float t = uTime;\n" +
+    "  float v = 0.0;\n" +
+    "  for (int i = 0; i < 3; i++){\n" +
+    "    float fi = float(i);\n" +
+    "    float y = 0.5 + 0.32 * sin(p.x * (0.9 + fi * 0.35) + t * (0.21 + fi * 0.07) + fi * 2.1) + 0.12 * sin(p.x * 2.7 - t * 0.3 + fi);\n" +
+    "    v += exp(-pow((p.y - y) / 0.02, 2.0)) * (1.0 - fi * 0.18);\n" +
+    "  }\n" +
+    "  for (int i = 0; i < 3; i++){\n" +
+    "    float fi = float(i);\n" +
+    "    vec2 c = vec2(0.5 * uRes.x / uRes.y + 0.6 * sin(t * 0.13 + fi * 2.4), 0.5 + 0.35 * cos(t * 0.11 + fi * 1.7));\n" +
+    "    v += exp(-dot(p - c, p - c) / 0.05) * 0.35;\n" +
+    "  }\n" +
+    "  vec2 m = uMouse / uRes.y;\n" +
+    "  v += exp(-dot(p - m, p - m) / 0.012) * 1.2 * uLamp;\n" +
+    "  return v;\n" +
+    "}\n" +
+    "void main(){\n" +
+    "  vec2 p = gl_FragCoord.xy / uRes.y;\n" +
+    "  float aspect = uRes.x / uRes.y;\n" +
+    "  float size = aspect / uCols;\n" +
+    "  vec2 id = floor(p / size);\n" +
+    "  vec2 q = (fract(p / size) - 0.5) * 2.0;\n" +
+    "  vec2 aq = abs(q);\n" +
+    "  float sq = pow(pow(aq.x, 9.0) + pow(aq.y, 9.0), 1.0 / 9.0);\n" +
+    "  float d = sq - 0.955;\n" +
+    "  if (d > 0.0) { gl_FragColor = vec4(uGround * 0.6, 1.0); return; }\n" +
+    "  float edge = clamp(1.0 + d / 0.55, 0.0, 1.0);\n" +
+    "  vec2 g = normalize(sign(q) * pow(aq + 1e-4, vec2(8.0)));\n" +
+    "  float bend = pow(edge, 2.2);\n" +
+    "  vec2 centre = (id + 0.5) * size;\n" +
+    "  vec2 look = centre + q * size * 0.5 * (1.0 - 0.55 * bend) - g * bend * size * 0.9;\n" +
+    "  float L = light(look);\n" +
+    "  float face = light(centre + q * size * 0.32) * 0.3;\n" +
+    "  float rim = L * pow(edge, 1.5) * 3.2;\n" +
+    "  float fres = pow(edge, 8.0) * 0.08;\n" +
+    "  vec3 col = uGround + uDeep * (face + 0.04) + uGlow * (rim + face * 0.6) + vec3(1.0) * pow(max(rim - 1.2, 0.0), 2.0) * 0.35 + fres;\n" +
+    "  col *= 0.85 + 0.15 * (0.5 + 0.5 * q.y);\n" +
+    "  gl_FragColor = vec4(col, 1.0);\n" +
+    "}";
+
+  function rgb(hex) {
+    var v = parseInt(hex.slice(1), 16);
+    return [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255];
+  }
+
+  var PALETTES = {
+    dark: { glow: "#10b981", deep: "#064e3b", ground: "#022c22" },
+    light: { glow: "#34d399", deep: "#059669", ground: "#ecfdf5" }
+  };
+
+  function mk(t, s) {
+    var sh = gl.createShader(t);
+    gl.shaderSource(sh, s);
+    gl.compileShader(sh);
+    return sh;
+  }
+
+  var pr = gl.createProgram();
+  gl.attachShader(pr, mk(gl.VERTEX_SHADER, VERT));
+  gl.attachShader(pr, mk(gl.FRAGMENT_SHADER, FRAG));
+  gl.linkProgram(pr);
+  gl.useProgram(pr);
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0);
+  gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+  var u = {
+    res: gl.getUniformLocation(pr, "uRes"),
+    time: gl.getUniformLocation(pr, "uTime"),
+    cols: gl.getUniformLocation(pr, "uCols"),
+    mouse: gl.getUniformLocation(pr, "uMouse"),
+    lamp: gl.getUniformLocation(pr, "uLamp"),
+    glow: gl.getUniformLocation(pr, "uGlow"),
+    deep: gl.getUniformLocation(pr, "uDeep"),
+    ground: gl.getUniformLocation(pr, "uGround")
+  };
+
+  function updatePalette(theme) {
+    var p = PALETTES[theme] || PALETTES.dark;
+    var g = rgb(p.glow), d = rgb(p.deep), gr = rgb(p.ground);
+    gl.uniform3f(u.glow, g[0], g[1], g[2]);
+    gl.uniform3f(u.deep, d[0], d[1], d[2]);
+    gl.uniform3f(u.ground, gr[0], gr[1], gr[2]);
+  }
+  window.updateGlassPalette = updatePalette;
+  updatePalette("dark");
+
+  var t = 12, last = 0, m = { x: 0, y: 0, tx: 0, ty: 0, l: 0, tl: 0 };
+
+  function size() {
+    var scale = Math.min(window.devicePixelRatio || 1, 2) * 0.85;
+    cv.width = Math.max(1, Math.round(window.innerWidth * scale));
+    cv.height = Math.max(1, Math.round(window.innerHeight * scale));
+    gl.viewport(0, 0, cv.width, cv.height);
+    gl.uniform2f(u.res, cv.width, cv.height);
+    gl.uniform1f(u.cols, window.innerWidth < 640 ? 5 : 9);
+  }
+
+  function frame() {
+    gl.uniform1f(u.time, t);
+    gl.uniform2f(u.mouse, m.x, m.y);
+    gl.uniform1f(u.lamp, m.l);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  function tick(now) {
+    var dt = last ? Math.min(0.1, (now - last) / 1000) : 0.016;
+    last = now;
+    t += dt;
+    m.x += (m.tx - m.x) * 0.12;
+    m.y += (m.ty - m.y) * 0.12;
+    m.l += (m.tl - m.l) * 0.06;
+    frame();
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener("resize", size);
+  window.addEventListener("pointermove", function(e) {
+    m.tx = (e.clientX / window.innerWidth) * cv.width;
+    m.ty = (1 - (e.clientY / window.innerHeight)) * cv.height;
+    if (!m.l) { m.x = m.tx; m.y = m.ty; }
+    m.tl = 1;
+  });
+  window.addEventListener("pointerleave", function() { m.tl = 0; });
+
+  size();
+  requestAnimationFrame(tick);
+})();
+
+/* Main Logic Script */
 var CATS=[["start","З чого почати"],["lex","Лексика"],["gram","Граматика"],["wr","Письмо"],["read","Читання"],["exp","Висловити думку"],["goal","Ситуації й робота"],["rev","Повторення"],["speak","Говоріння"]];
 var LV=["A1","A2","B1","B2","C1"];
 var LANGS=[["Ukrainian","Українська"],["English","Англійська"],["simple English with Ukrainian for hard words","Проста англійська + українська для складних слів"]];
-var MODES=[["OFF","Ззвичайний"],["ON","18+ (дорослий)"]];
+var MODES=[["OFF","Звичайний"],["ON","18+ (дорослий)"]];
 var CHECK=`ANSWER CHECKING:
 - Before each closed task, decide the correct answer and any other acceptable answers. Compare my answer with them; never judge by overall impression.
 - If I send several answers at once, with or without numbers, match them to the tasks in order. If the counts do not match, ask me; do not guess.
@@ -1220,7 +1309,7 @@ How this works:
    d) finish.
 
 Begin now.`},
-{c:"goal",id:"workcomm",n:"Work Communication Kit",lv:"B1-C1",t:"15-25 хв",d:"Листи, наради, дзвінки, презентації, перемовини й університетська комунікація: фрази, ваш текст із відгуком, SCENARIO для рольової гри.",
+{c:"goal",id:"workcomm",n:"Work Communication Kit",lv:"B1-C1",t:"15-25 хв",d:"Листи, наради, дзвінки, презентації, перемовини й университетська комунікація: фрази, ваш текст із відгуком, SCENARIO для рольової гри.",
 en:"the English phrases, examples, drafts, and tasks are",ls:"",
 f:[S_("Task type",["email","meeting","phone call","video call","presentation","negotiation","customer service","university (email to a teacher, seminar, presentation)","other"]),A_("My situation (who, what, and what I need to achieve)","[DESCRIBE]"),A_("My own draft or notes (optional, in any language)","",true),S_("Did I dictate this?",YN)],
 b:`You are an experienced business English teacher. Help me prepare for a real work or study communication task in English.
@@ -1707,22 +1796,14 @@ themeBtn.onclick = function() {
     document.documentElement.setAttribute("data-theme", "light");
     currentTheme = "light";
     themeIcon.innerHTML = moonSvg;
+    if (window.updateGlassPalette) window.updateGlassPalette("light");
   } else {
     document.documentElement.setAttribute("data-theme", "dark");
     currentTheme = "dark";
     themeIcon.innerHTML = sunSvg;
+    if (window.updateGlassPalette) window.updateGlassPalette("dark");
   }
 };
-
-// Interactive Card Spotlight on Mousemove
-document.addEventListener('mousemove', function(e) {
-  document.querySelectorAll('section').forEach(function(sec) {
-    var rect = sec.getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
-    sec.style.backgroundImage = `radial-gradient(400px circle at ${x}px ${y}px, rgba(16, 185, 129, 0.06), transparent 40%)`;
-  });
-});
 </script>
 </body>
 </html>
