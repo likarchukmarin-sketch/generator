@@ -1,375 +1,299 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Генератор промптів для вивчення англійської</title>
+<meta name="description" content="Безкоштовний генератор промптів для вивчення англійської з ШІ: 28 готових сценаріїв (лексика, граматика, письмо, читання, говоріння) для ChatGPT, Claude і Gemini. Налаштуйте рівень, мову пояснень і скопіюйте готовий промпт.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04120e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Генератор промптів для вивчення англійської">
+<meta property="og:description" content="28 готових промптів для ChatGPT, Claude і Gemini: лексика, граматика, письмо, читання, говоріння.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2310b981'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='700' text-anchor='middle' fill='%23022c22'%3EEN%3C/text%3E%3C/svg%3E">
+<script>
+/* Тема визначається до першого малювання, щоб не було «спалаху» */
+(function () {
+  var t = null;
+  try { t = localStorage.getItem("theme"); } catch (e) {}
+  if (t !== "light" && t !== "dark") {
+    t = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  }
+  document.documentElement.setAttribute("data-theme", t);
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
+  color-scheme: dark;
   --bg: #04120e;
-  --card: rgba(10, 31, 24, 0.75);
-  --card-hover: rgba(16, 44, 34, 0.85);
+  --bg-solid: #0a1f18;
+  --card: rgba(10, 31, 24, 0.78);
+  --card-hover: rgba(16, 44, 34, 0.88);
   --ink: #e6f5f0;
-  --mut: #7ca698;
-  --line: rgba(74, 222, 128, 0.15);
+  --mut: #8fb7a8;
+  --line: rgba(74, 222, 128, 0.2);
   --acc: #10b981;
-  --acc-glow: rgba(16, 185, 129, 0.35);
   --acc-bright: #34d399;
-  --accink: #022c22;
+  --acc-text: #34d399;
+  --acc-glow: rgba(16, 185, 129, 0.35);
+  --btn-from: #34d399;
+  --btn-to: #10b981;
+  --btn-ink: #022c22;
   --sel: rgba(16, 185, 129, 0.18);
   --code: #021a14;
-  --accent-green: #4ade80;
+  --field: rgba(0, 0, 0, 0.28);
+  --chip: rgba(255, 255, 255, 0.04);
+  --warn: #fbbf24;
+  --warn-bg: rgba(251, 191, 36, 0.1);
   --blur: blur(16px);
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 :root[data-theme="light"] {
+  color-scheme: light;
   --bg: #f0fdf4;
-  --card: rgba(255, 255, 255, 0.85);
-  --card-hover: rgba(255, 255, 255, 0.95);
+  --bg-solid: #ffffff;
+  --card: rgba(255, 255, 255, 0.88);
+  --card-hover: #ffffff;
   --ink: #062c19;
-  --mut: #3b7a57;
-  --line: rgba(5, 150, 105, 0.18);
+  --mut: #2f6b4a;
+  --line: rgba(5, 150, 105, 0.28);
   --acc: #059669;
-  --acc-glow: rgba(5, 150, 105, 0.25);
   --acc-bright: #10b981;
-  --accink: #ffffff;
-  --sel: rgba(16, 185, 129, 0.12);
+  --acc-text: #047857;
+  --acc-glow: rgba(5, 150, 105, 0.25);
+  --btn-from: #047857;
+  --btn-to: #065f46;
+  --btn-ink: #ffffff;
+  --sel: rgba(16, 185, 129, 0.14);
   --code: #ecfdf5;
-  --accent-green: #047857;
+  --field: rgba(255, 255, 255, 0.9);
+  --chip: rgba(5, 150, 105, 0.06);
+  --warn: #92400e;
+  --warn-bg: rgba(245, 158, 11, 0.14);
 }
 
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #f0fdf4;
-    --card: rgba(255, 255, 255, 0.85);
-    --card-hover: rgba(255, 255, 255, 0.95);
-    --ink: #062c19;
-    --mut: #3b7a57;
-    --line: rgba(5, 150, 105, 0.18);
-    --acc: #059669;
-    --acc-glow: rgba(5, 150, 105, 0.25);
-    --acc-bright: #10b981;
-    --accink: #ffffff;
-    --sel: rgba(16, 185, 129, 0.12);
-    --code: #ecfdf5;
-    --accent-green: #047857;
-  }
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-padding-top: env(safe-area-inset-top, 0px);
-}
-
-*, *:before, *:after {
-  box-sizing: border-box;
-}
+html { scroll-padding-top: 12px; }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font: 15px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  font: 15px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   counter-reset: st;
   min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Background Animated Gradient Mesh */
+/* Фон: два розмиті «блоби» */
 .bg-blobs {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
 }
-
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  animation: float 20s infinite ease-in-out alternate;
+  filter: blur(70px);
+  opacity: 0.3;
+  will-change: transform;
+  animation: float 22s infinite ease-in-out alternate;
 }
-
-.blob-1 {
-  width: 450px;
-  height: 450px;
-  background: var(--accent-green);
-  top: -100px;
-  right: -100px;
-}
-
-.blob-2 {
-  width: 500px;
-  height: 500px;
-  background: var(--acc);
-  bottom: -150px;
-  left: -100px;
-  animation-delay: -7s;
-}
-
+.blob-1 { width: 450px; height: 450px; background: var(--acc-bright); top: -100px; right: -100px; }
+.blob-2 { width: 500px; height: 500px; background: var(--acc); bottom: -150px; left: -100px; animation-delay: -7s; }
 @keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, 60px) scale(1.1); }
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(40px, 60px) scale(1.1); }
   100% { transform: translate(-30px, -20px) scale(0.95); }
 }
 
 main {
   max-width: 780px;
   margin: 0 auto;
-  padding: 40px 20px 80px;
+  padding: max(40px, env(safe-area-inset-top)) 20px max(80px, env(safe-area-inset-bottom));
   position: relative;
   z-index: 1;
 }
 
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
+.top-bar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
 
-/* Theme Toggle Button */
 .theme-btn {
   background: var(--card);
   border: 1px solid var(--line);
   color: var(--ink);
-  padding: 10px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-backdrop-filter: var(--blur);
   backdrop-filter: var(--blur);
-  transition: all 0.25s ease;
+  transition: border-color 0.25s ease, transform 0.25s ease;
 }
-
-.theme-btn:hover {
-  border-color: var(--acc-bright);
-  transform: scale(1.05);
-}
+.theme-btn:hover { border-color: var(--acc-bright); transform: scale(1.05); }
+.theme-btn:focus-visible { outline: 2px solid var(--acc-text); outline-offset: 2px; }
 
 h1 {
   font: 700 2.2rem/1.25 "Source Serif 4", Georgia, serif;
   margin: 0 0 10px;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--ink) 30%, var(--mut));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--ink);
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 {
+    background: linear-gradient(135deg, var(--ink) 40%, var(--acc-text));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }
 
-.lead {
-  color: var(--mut);
-  margin: 0 0 32px;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
+.lead { color: var(--mut); margin: 0 0 32px; font-size: 1.05rem; line-height: 1.6; }
 
 section {
   margin: 0 0 28px;
-  background: var(--card);
-  backdrop-filter: var(--blur);
+  background-color: var(--card);
+  background-image: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), rgba(16, 185, 129, 0.07), transparent 40%);
   -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 22px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 12px;
 }
-
-section:hover {
-  border-color: var(--acc-bright);
-}
-
+section:hover { border-color: var(--acc-bright); }
 section:not([hidden]) {
   counter-increment: st;
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
-  font: 600 1.15rem/1.3 "Plus Jakarta Sans", sans-serif;
+  font: 600 1.15rem/1.3 "Plus Jakarta Sans", system-ui, sans-serif;
   margin: 0 0 12px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
-h2:before {
+h2::before {
   content: counter(st);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: none;
   width: 26px;
   height: 26px;
   border-radius: 8px;
   background: var(--sel);
-  color: var(--acc-bright);
+  color: var(--acc-text);
   font-size: 0.85rem;
   font-weight: 700;
 }
+h3 { font: 600 0.95rem/1.3 "Plus Jakarta Sans", system-ui, sans-serif; margin: 20px 0 10px; }
 
-.hint {
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--mut);
-  margin: -4px 0 14px;
-}
+.hint { font-size: 0.88rem; line-height: 1.5; color: var(--mut); margin: -4px 0 14px; }
 
-/* Radio buttons & Cards styling */
-.opts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+/* Радіо-кнопки у вигляді «пігулок» і карток */
+.opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.opts label, .cards label { cursor: pointer; position: relative; display: block; }
 
-.opts label, .cards label {
-  cursor: pointer;
-  position: relative;
-}
+input[type=radio] { position: absolute; opacity: 0; pointer-events: none; }
 
-input[type=radio] {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.opts span {
+.opts label > span {
   display: block;
   padding: 10px 16px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--chip);
   font-weight: 500;
   font-size: 0.93rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
+.opts label:hover > span { border-color: var(--acc); background: var(--sel); transform: translateY(-1px); }
 
-.opts label:hover span {
-  border-color: var(--acc);
-  background: var(--sel);
-  transform: translateY(-1px);
-}
-
-input:checked + span {
+input[type=radio]:checked + span {
   background: var(--sel);
   border-color: var(--acc);
-  color: var(--acc-bright);
+  color: var(--acc-text);
   box-shadow: 0 0 0 1px var(--acc), 0 4px 12px var(--acc-glow);
 }
+input[type=radio]:focus-visible + span { outline: 2px solid var(--acc-text); outline-offset: 2px; }
 
-input:focus-visible + span {
-  outline: 2px solid var(--acc-bright);
-  outline-offset: 2px;
-}
-
-.cards {
-  display: grid;
-  gap: 10px;
-}
-
-.cards span {
+.cards { display: grid; gap: 10px; }
+.cards label > span {
   display: block;
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
-  transition: all 0.25s ease;
+  background: var(--chip);
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
-
-.cards label:hover span {
+.cards label:hover > span {
   border-color: var(--acc);
   background: var(--card-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
-
-.cards b {
-  display: block;
-  font-size: 1.02rem;
-  margin-bottom: 4px;
-  color: var(--ink);
-}
-
-.cards em {
-  font-style: normal;
-  color: var(--accent-green);
+.cards .t { display: block; font-weight: 700; font-size: 1.02rem; margin-bottom: 4px; color: var(--ink); }
+.cards .m {
+  display: inline-block;
+  color: var(--acc-text);
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  display: inline-block;
   margin-bottom: 6px;
 }
+.cards .d { display: block; color: var(--mut); font-size: 0.9rem; font-weight: 400; }
 
-.cards div {
-  color: var(--mut);
-  font-size: 0.9rem;
-}
-
-/* Inputs, Textareas, Selects */
-.fl {
-  margin: 0 0 16px;
-}
-
-.fl label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 6px;
-}
-
-.fl .o {
-  font-weight: 400;
-  color: var(--mut);
-}
+/* Поля форми */
+.fl { margin: 0 0 16px; }
+.fl > label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+.fl .o { font-weight: 400; color: var(--mut); }
+.fl .fb { font-size: 0.8rem; line-height: 1.4; color: var(--mut); margin: 6px 0 0; }
 
 input[type=text], textarea, select {
   width: 100%;
   padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.12);
+  background: var(--field);
   color: var(--ink);
   font: inherit;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
+  font-size: 1rem; /* 16px: iOS Safari не збільшує сторінку при фокусі */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
 input[type=text]:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--acc-bright);
   box-shadow: 0 0 0 3px var(--acc-glow);
-  background: rgba(0, 0, 0, 0.2);
 }
+::placeholder { color: var(--mut); opacity: 0.9; }
+option { background: var(--bg-solid); color: var(--ink); }
+textarea { min-height: 100px; resize: vertical; }
+.fl select + input { margin-top: 8px; }
 
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.fl select + input {
-  margin-top: 8px;
-}
-
-/* Output Code Box */
+/* Готовий промпт */
 pre {
   background: var(--code);
   border: 1px solid var(--line);
@@ -377,137 +301,142 @@ pre {
   padding: 18px;
   white-space: pre-wrap;
   word-break: break-word;
-  font: 0.88rem/1.6 "JetBrains Mono", ui-monospace, monospace;
+  font: 0.88rem/1.6 "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   max-height: 480px;
   overflow: auto;
-  margin: 0 0 16px;
-  box-shadow: inset 0 2px 8px rgba(0,0,0,0.15);
+  margin: 0 0 8px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+pre:focus-visible { outline: 2px solid var(--acc-text); outline-offset: 2px; }
+pre::-webkit-scrollbar { width: 6px; height: 6px; }
+pre::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+.meta { font-size: 0.82rem; color: var(--mut); margin: 0 0 14px; }
+
+.warn {
+  border: 1px solid var(--warn);
+  background: var(--warn-bg);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0 0 14px;
 }
 
-/* Shimmer Modern Button */
-.btn-wrapper {
-  position: relative;
-  display: inline-block;
-}
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
-button.action-btn {
+.action-btn {
   position: relative;
-  font: 600 0.98rem/1 "Plus Jakarta Sans", sans-serif;
+  font: 600 0.98rem/1 "Plus Jakarta Sans", system-ui, sans-serif;
+  min-height: 48px;
   padding: 14px 24px;
   border: 0;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--acc-bright), var(--acc));
-  color: var(--accink);
+  background: linear-gradient(135deg, var(--btn-from), var(--btn-to));
+  color: var(--btn-ink);
   cursor: pointer;
   overflow: hidden;
   box-shadow: 0 4px 16px var(--acc-glow);
-  transition: all 0.25s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
-
-button.action-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px var(--acc-glow);
-  filter: brightness(1.08);
-}
-
-button.action-btn:active {
-  transform: translateY(1px);
-}
-
-/* Button Shimmer Effect */
-button.action-btn::after {
-  content: '';
+.action-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--acc-glow); filter: brightness(1.06); }
+.action-btn:active { transform: translateY(1px); }
+.action-btn:focus-visible { outline: 2px solid var(--acc-text); outline-offset: 3px; }
+.action-btn::after {
+  content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transform: rotate(30deg) translateY(-100%);
-  animation: shimmer 4s infinite;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.action-btn:hover::after { animation: shimmer 1s ease; }
+@keyframes shimmer { to { transform: translateX(120%); } }
+.action-btn .ic-done, .action-btn.done .ic-copy { display: none; }
+.action-btn.done .ic-done { display: inline; }
+
+.chip {
+  font: 500 0.93rem/1.2 "Plus Jakarta Sans", system-ui, sans-serif;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--chip);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.chip:hover { border-color: var(--acc); background: var(--sel); }
+.chip:focus-visible { outline: 2px solid var(--acc-text); outline-offset: 2px; }
+
+.note { font-size: 0.85rem; line-height: 1.5; color: var(--mut); margin: 14px 0 0; }
+#status { font-weight: 600; color: var(--acc-text); min-height: 1.5em; margin-top: 10px; }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 520px) {
+  main { padding-left: 14px; padding-right: 14px; }
+  h1 { font-size: 1.75rem; }
+  section { padding: 18px; }
+  .action-btn { width: 100%; justify-content: center; }
 }
 
-@keyframes shimmer {
-  0% { transform: rotate(30deg) translateY(-100%); }
-  20%, 100% { transform: rotate(30deg) translateY(100%); }
-}
-
-.note {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--mut);
-  margin-top: 14px;
-}
-
-#status {
-  font-weight: 600;
-  color: var(--acc-bright);
-}
-
-[hidden] {
-  display: none !important;
-}
-
-pre::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-pre::-webkit-scrollbar-thumb {
-  background: var(--line);
-  border-radius: 4px;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- Animated Background Canvas Blobs -->
-<div class="bg-blobs">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-</div>
+<div class="bg-blobs" aria-hidden="true"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 
 <main>
 <div class="top-bar">
-  <div></div>
-  <button type="button" class="theme-btn" id="themeToggle" aria-label="Перемикач теми">
-    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+  <button type="button" class="theme-btn" id="themeToggle" aria-label="Перемкнути тему" title="Перемкнути тему">
+    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
   </button>
 </div>
 
 <h1>Генератор промптів для вивчення англійської</h1>
 <p class="lead">Оберіть категорію й конкретний промпт, налаштуйте рівень і режим. У кінці з’явиться повний готовий промпт: скопіюйте його в ChatGPT, Claude чи Gemini.</p>
 
-<section id="s1"><h2>Категорія</h2><div class="opts" id="cats"></div></section>
-<section id="s2" hidden><h2>Промпт</h2><div class="cards" id="plist"></div></section>
-<section id="s3" hidden><h2>Ваш рівень</h2><p class="hint">Не впевнені? Оберіть «not sure»: ШІ уточнить за першими відповідями.</p><div class="opts" id="level"></div></section>
-<section id="s4" hidden><h2>Мова пояснень</h2><div class="opts" id="lang"></div></section>
-<section id="s5" hidden><h2>Режим 18+</h2><p class="hint">Дозволяє ШІ пояснювати лайку, сленг і табу-лексику як викладач. Вмикайте, лише якщо вам є 18 років. Деякі платформи можуть обмежувати такі відповіді.</p><div class="opts" id="mode"></div></section>
-<section id="s6" hidden><h2>Уточнення</h2><div id="fields"></div></section>
-<section id="s7" hidden><h2>Ваш промпт</h2>
-<pre id="out" aria-live="polite"></pre>
-<div class="btn-wrapper">
+<noscript><p class="warn">Для роботи генератора потрібен JavaScript. Увімкніть його в налаштуваннях браузера й оновіть сторінку.</p></noscript>
+
+<section id="s1" aria-labelledby="h-s1"><h2 id="h-s1">Категорія</h2><div class="opts" id="cats" role="radiogroup" aria-labelledby="h-s1"></div></section>
+<section id="s2" hidden aria-labelledby="h-s2"><h2 id="h-s2">Промпт</h2><div class="cards" id="plist" role="radiogroup" aria-labelledby="h-s2"></div></section>
+<section id="s3" hidden aria-labelledby="h-s3"><h2 id="h-s3">Ваш рівень</h2><p class="hint">Не впевнені? Оберіть «Не впевнений(-а)»: ШІ уточнить рівень за першими відповідями. Вибір запам’ятається в цьому браузері.</p><div class="opts" id="level" role="radiogroup" aria-labelledby="h-s3"></div></section>
+<section id="s4" hidden aria-labelledby="h-s4"><h2 id="h-s4">Мова пояснень</h2><div class="opts" id="lang" role="radiogroup" aria-labelledby="h-s4"></div></section>
+<section id="s5" hidden aria-labelledby="h-s5"><h2 id="h-s5">Режим 18+</h2><p class="hint">Дозволяє ШІ пояснювати лайку, сленг і табу-лексику як викладач. Вмикайте, лише якщо вам є 18 років. Деякі платформи можуть обмежувати такі відповіді.</p><div class="opts" id="mode" role="radiogroup" aria-labelledby="h-s5"></div></section>
+<section id="s6" hidden aria-labelledby="h-s6"><h2 id="h-s6">Уточнення</h2><div id="fields"></div></section>
+<section id="s7" hidden aria-labelledby="h-s7"><h2 id="h-s7">Ваш промпт</h2>
+<div class="warn" id="warn" hidden></div>
+<pre id="out" tabindex="0" lang="en" aria-label="Готовий промпт"></pre>
+<p class="meta" id="count"></p>
+<div class="actions">
   <button type="button" class="action-btn" id="copy">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-    Скопіювати промпт
+    <svg class="ic-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+    <svg class="ic-done" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="copyLabel">Скопіювати промпт</span>
   </button>
 </div>
 <p class="note" id="status" role="status"></p>
+<div id="next" hidden>
+  <h3>Що далі</h3>
+  <p class="hint">Цей промпт посилається на інші. Перейдіть до потрібного в один клік.</p>
+  <div class="opts" id="nextBtns"></div>
+</div>
 <p class="note">ШІ може помилятися, а між чатами він вас, як правило, не пам’ятає: важливі результати зберігайте самі. Це навчальна допомога, а не заміна викладача. Вимову ШІ надійно не оцінює.</p></section>
 </main>
 
 <script>
+(function () {
+"use strict";
 var CATS=[["start","З чого почати"],["lex","Лексика"],["gram","Граматика"],["wr","Письмо"],["read","Читання"],["exp","Висловити думку"],["goal","Ситуації й робота"],["rev","Повторення"],["speak","Говоріння"]];
 var LV=["A1","A2","B1","B2","C1"];
 var LANGS=[["Ukrainian","Українська"],["English","Англійська"],["simple English with Ukrainian for hard words","Проста англійська + українська для складних слів"]];
-var MODES=[["OFF","Ззвичайний"],["ON","18+ (дорослий)"]];
+var MODES=[["OFF","Звичайний"],["ON","18+ (дорослий)"]];
 var CHECK=`ANSWER CHECKING:
 - Before each closed task, decide the correct answer and any other acceptable answers. Compare my answer with them; never judge by overall impression.
 - If I send several answers at once, with or without numbers, match them to the tasks in order. If the counts do not match, ask me; do not guess.
@@ -549,7 +478,7 @@ At the end, give me (in my chosen language):
 Begin now.`},
 {c:"start",id:"plan",n:"My Study Plan",lv:"A1-C1",t:"5-10 хв",d:"Реалістичний тижневий план під ваш час, мету й рівень, із рядками для старту кожного заняття.",
 lt:"questions, the plan, explanations, advice",en:"English examples and the starter sentences (point 6) are",ls:"",
-f:[T_("Goal","[YOUR GOAL]"),T_("Time I have","15 minutes a day, 5 days a week"),T_("My interests","[YOUR INTERESTS]"),S_("What is hardest for me",["speaking","remembering words","grammar","understanding people","writing"]),A_("My MY LEVEL SUMMARY from Level Check (optional)","",true)],
+f:[T_("Goal","[YOUR GOAL]"),T_("Time I have","15 minutes a day, 5 days a week"),T_("My interests","[YOUR INTERESTS]"),S_("What is hardest for me",["speaking","remembering words","grammar","understanding people","writing"]),A_("My \"MY LEVEL SUMMARY\" block from Level Check (optional)","",true)],
 b:`You are an experienced English teacher and study coach. Create a realistic personal study plan for me.
 
 {ABOUT}
@@ -1372,7 +1301,7 @@ ENDING: You cannot see a clock. Aim for about 12-15 exchanges (fewer for A1), or
 5. NEXT STEP options, then WAIT for my choice:
    a) continue the conversation on a new topic;
    b) practise one mistake in the Grammar Clinic;
-   c) try a Role-Play or Talk Studio;
+   c) try the Role-Play Simulator or Talk Studio;
    d) finish.
 
 Begin now with your first question.`},
@@ -1560,169 +1489,361 @@ HOW THIS WORKS:
 
 Begin now.`},
 /*END*/];
+/* ===== Застосунок ===== */
+var $ = function (id) { return document.getElementById(id); };
+var S = { c: null, p: null, lv: null, lang: null, mode: null, v: [] };
+var ORDER = ["s2", "s3", "s4", "s5", "s6", "s7"];
+var NOT_SURE = "not sure";
+var reduceMotion = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-var $=function(i){return document.getElementById(i)};
-var S={c:null,p:null,lv:null,lang:null,mode:null,v:[]};
+/* localStorage може бути недоступним (приватний режим, file://) */
+var store = {
+  get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
 
-function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function el(tag, cls, text) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
 
-function radios(box,name,items,sel,cb){
-  box.innerHTML="";
-  items.forEach(function(it){
-    var lab=el("label"),i=el("input");
-    i.type="radio";i.name=name;i.value=it[0];
-    if(it[0]===sel)i.checked=true;
-    i.onchange=function(){cb(it[0])};
+function setRadio(name, value) {
+  var r = document.getElementsByName(name);
+  for (var i = 0; i < r.length; i++) r[i].checked = (r[i].value === value);
+}
+
+function radios(box, name, items, sel, cb) {
+  box.innerHTML = "";
+  items.forEach(function (it) {
+    var lab = el("label"), i = el("input");
+    i.type = "radio"; i.name = name; i.value = it[0];
+    if (it[0] === sel) i.checked = true;
+    i.addEventListener("change", function () { cb(it[0]); });
     lab.appendChild(i);
-    lab.appendChild(el("span","",it[1]));
+    lab.appendChild(el("span", "", it[1]));
     box.appendChild(lab);
   });
 }
 
-function assemble(p,s,vals){
-  vals=vals||[];
-  var a="About me:\n- "+(p.ll||"My level")+": "+s.lv+"\n- Language for explanations: "+s.lang+"\n";
-  if(p.adult)a+="- Adult mode: "+(s.mode||"OFF")+"\n";
-  (p.f||[]).forEach(function(f,i){
-    var v=f.t==="s"?(vals[i]||f.o[0]):(vals[i]||"");
-    if(!v){if(f.opt)return;v=f.ph}
-    a+="- "+f.l+":"+(f.t==="a"?"\n":" ")+v+"\n";
+/* ---------- Збирання промпту ---------- */
+function build(p, s, vals) {
+  vals = vals || [];
+  var missing = [];
+  var a = "About me:\n- " + (p.ll || "My level") + ": " + s.lv + "\n- Language for explanations: " + s.lang + "\n";
+  if (p.adult) a += "- Adult mode: " + (s.mode || "OFF") + "\n";
+  (p.f || []).forEach(function (f, i) {
+    var v = f.t === "s" ? (vals[i] || f.o[0]) : (vals[i] || "");
+    if (!v) {
+      if (f.opt) return;
+      v = f.ph;
+      if (f.ph && f.ph.charAt(0) === "[") missing.push(f.l);
+    }
+    a += "- " + f.l + ":" + (f.t === "a" ? "\n" : " ") + v + "\n";
   });
-  var ls=p.ls===undefined?" If my level is A1-A2 and I chose Ukrainian, write task instructions in Ukrainian too.":(p.ls?" "+p.ls:"");
-  var lang="IMPORTANT LANGUAGE RULE: Write ALL of your own text ("+(p.lt||"instructions, hints, explanations, feedback, summaries")+") in the language I chose. Only "+p.en+" in English."+ls;
-  var ad="ADULT MODE (applies only if I wrote ON): I am an adult (18+) and I am learning real-life English, including swearing, slang, and sexual or offensive language. If "+(p.adw||"a word or expression")+" is vulgar, offensive, sexual, or taboo: do not refuse and do not only say \"this is a bad word\". Explain it like a language teacher: the meaning in plain language, the closest Ukrainian equivalent(s) (or say there is none), how strong it is (mild / strong / very offensive), when it is acceptable and when it is risky, and 1-2 milder alternatives. Keep examples short and not graphic. If it is a slur against a group of people, explain what it means and why it is offensive so I can recognise it, but do not encourage me to use it. If Adult mode is OFF and an item is vulgar, say so in one short line and tell me I can switch Adult mode ON.";
-  return p.b.replace("{ABOUT}",function(){return a.trim()}).replace("{LANG}",function(){return lang}).replace("{CHECK}",function(){return CHECK}).replace("{ADULT}",function(){return ad});
+  var ls = p.ls === undefined
+    ? " If my level is A1-A2 and I chose Ukrainian, write task instructions in Ukrainian too."
+    : (p.ls ? " " + p.ls : "");
+  var lang = "IMPORTANT LANGUAGE RULE: Write ALL of your own text (" +
+    (p.lt || "instructions, hints, explanations, feedback, summaries") +
+    ") in the language I chose. Only " + p.en + " in English." + ls;
+  var ad = "ADULT MODE (applies only if I wrote ON): I am an adult (18+) and I am learning real-life English, including swearing, slang, and sexual or offensive language. If " +
+    (p.adw || "a word or expression") +
+    " is vulgar, offensive, sexual, or taboo: do not refuse and do not only say \"this is a bad word\". Explain it like a language teacher: the meaning in plain language, the closest Ukrainian equivalent(s) (or say there is none), how strong it is (mild / strong / very offensive), when it is acceptable and when it is risky, and 1-2 milder alternatives. Keep examples short and not graphic. If it is a slur against a group of people, explain what it means and why it is offensive so I can recognise it, but do not encourage me to use it. If Adult mode is OFF and an item is vulgar, say so in one short line and tell me I can switch Adult mode ON.";
+  var parts = { ABOUT: a.trim(), LANG: lang, CHECK: CHECK, ADULT: ad };
+  /* один прохід: текст користувача, де випадково є {CHECK} чи {LANG}, не буде підмінено */
+  var text = p.b.replace(/\{(ABOUT|LANG|CHECK|ADULT)\}/g, function (m, k) { return parts[k]; });
+  return { text: text, missing: missing };
 }
 
-function ready(){return S.p&&S.lv&&S.lang&&(!S.p.adult||S.mode)}
-function render(){if(!ready())return;$("out").textContent=assemble(S.p,S,S.v);$("status").textContent=""}
-function reveal(){
-  $("s2").hidden=!S.c;
-  $("s3").hidden=!S.p;
-  $("s4").hidden=!(S.p&&S.lv);
-  $("s5").hidden=!(S.p&&S.p.adult&&S.lang);
-  $("s6").hidden=!ready()||!(S.p.f||[]).length;
-  $("s7").hidden=!ready();
+/* ---------- Стан і видимість секцій ---------- */
+function ready() { return !!(S.p && S.lv && S.lang && (!S.p.adult || S.mode)); }
+
+function visibility() {
+  return {
+    s2: !!S.c,
+    s3: !!S.p,
+    s4: !!(S.p && S.lv),
+    s5: !!(S.p && S.p.adult && S.lang),
+    s6: ready() && (S.p.f || []).length > 0,
+    s7: ready()
+  };
 }
 
-function levels(){
-  var r=S.p.lv.split("-"),a=LV.indexOf(r[0]),z=LV.indexOf(r[1]);
-  var it=LV.slice(a,z+1).concat(["not sure"]).map(function(x){return[x,x]});
-  if(S.lv&&!it.some(function(x){return x[0]===S.lv}))S.lv=null;
-  radios($("level"),"lv",it,S.lv,function(v){S.lv=v;reveal();render()});
+/* Повертає id секцій, які щойно з’явилися */
+function reveal() {
+  var vis = visibility(), fresh = [];
+  ORDER.forEach(function (id) {
+    var e = $(id);
+    if (e.hidden && vis[id]) fresh.push(id);
+    e.hidden = !vis[id];
+  });
+  return fresh;
 }
 
-function fields(){
-  var b=$("fields");b.innerHTML="";S.v=[];
-  (S.p.f||[]).forEach(function(f,i){
-    var w=el("div","fl"),l=el("label","",f.l);
-    if(f.opt){l.appendChild(el("span","o"," (необов’язково)"))}
+/* Перша секція, де від користувача ще потрібна дія */
+function nextStep() {
+  if (!S.p) return S.c ? "s2" : "s1";
+  if (!S.lv) return "s3";
+  if (!S.lang) return "s4";
+  if (S.p.adult && !S.mode) return "s5";
+  return (S.p.f || []).length ? "s6" : "s7";
+}
+
+function scrollToId(id) {
+  var e = $(id);
+  if (e && e.scrollIntoView) e.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+}
+
+function setHash(id) {
+  try { history.replaceState(null, "", id ? "#" + id : location.pathname + location.search); } catch (e) {}
+}
+
+/* ---------- Вивід ---------- */
+function render() {
+  if (!ready()) return;
+  var r = build(S.p, S, S.v), t = r.text;
+  $("out").textContent = t;
+  var words = t.split(/\s+/).filter(Boolean).length;
+  $("count").textContent = "≈ " + words + " слів · " + t.length + " символів";
+  var w = $("warn");
+  if (r.missing.length) {
+    w.hidden = false;
+    w.textContent = "Не заповнено: " + r.missing.join("; ") + ". У промпті залишилися підказки в [квадратних дужках]: заповніть поля вище або допишіть відповідь прямо в чаті.";
+  } else {
+    w.hidden = true;
+  }
+  $("status").textContent = "";
+}
+
+function renderNext() {
+  var p = S.p, box = $("nextBtns");
+  box.innerHTML = "";
+  var rel = p ? P.filter(function (q) { return q.id !== p.id && p.b.indexOf(q.n) !== -1; }) : [];
+  rel.forEach(function (q) {
+    var b = el("button", "chip", q.n);
+    b.type = "button";
+    b.addEventListener("click", function () { jump(q); });
+    box.appendChild(b);
+  });
+  $("next").hidden = !rel.length;
+}
+
+/* ---------- Кроки ---------- */
+function levels() {
+  var r = S.p.lv.split("-"), a = LV.indexOf(r[0]), z = LV.indexOf(r[1]);
+  var it = LV.slice(a, z + 1).map(function (x) { return [x, x]; }).concat([[NOT_SURE, "Не впевнений(-а)"]]);
+  if (S.lv && !it.some(function (x) { return x[0] === S.lv; })) S.lv = null;
+  radios($("level"), "lv", it, S.lv, function (v) {
+    S.lv = v; store.set("lv", v); update();
+  });
+}
+
+function fbText(f) {
+  if (f.t === "s" || f.opt || !f.ph) return "";
+  if (f.ph.charAt(0) === "[") return "Якщо залишити порожнім, у промпті лишиться підказка «" + f.ph + "»: допишіть її в чаті.";
+  return "Якщо залишити порожнім, у промпті буде: «" + f.ph + "».";
+}
+
+function fields() {
+  var b = $("fields");
+  b.innerHTML = ""; S.v = [];
+  (S.p.f || []).forEach(function (f, i) {
+    var w = el("div", "fl"), id = "f" + i, l = el("label", "", f.l);
+    l.htmlFor = id;
+    if (f.opt) l.appendChild(el("span", "o", " (необов’язково)"));
     w.appendChild(l);
+    var note = fbText(f) ? el("p", "fb", fbText(f)) : null;
     var x;
-    if(f.t==="s"){
-      x=el("select");
-      f.o.forEach(function(o){x.appendChild(el("option","",o)).value=o});
-      x.onchange=function(){S.v[i]=x.value;render()};
+    if (f.t === "s") {
+      x = el("select"); x.id = id;
+      f.o.forEach(function (o) { var op = el("option", "", o); op.value = o; x.appendChild(op); });
+      x.addEventListener("change", function () { S.v[i] = x.value; render(); });
       w.appendChild(x);
-    } else if(f.t==="c"){
-      x=el("select");
-      var z=el("option","","— обрати зі списку —");z.value="";
+    } else if (f.t === "c") {
+      x = el("select"); x.id = id;
+      var z = el("option", "", "— обрати зі списку —"); z.value = "";
       x.appendChild(z);
-      f.o.forEach(function(o){x.appendChild(el("option","",o)).value=o});
-      var y=el("input");y.type="text";y.placeholder="або впишіть своє";
-      var u=function(){S.v[i]=y.value.trim()||x.value;render()};
-      x.onchange=u;y.oninput=u;
-      w.appendChild(x);w.appendChild(y);
+      f.o.forEach(function (o) { var op = el("option", "", o); op.value = o; x.appendChild(op); });
+      var y = el("input"); y.type = "text"; y.placeholder = "або впишіть своє";
+      y.setAttribute("aria-label", f.l + ": власний варіант"); y.autocomplete = "off";
+      var u = function () {
+        S.v[i] = y.value.trim() || x.value;
+        if (note) note.hidden = !!S.v[i];
+        render();
+      };
+      x.addEventListener("change", u); y.addEventListener("input", u);
+      w.appendChild(x); w.appendChild(y);
     } else {
-      x=el(f.t==="a"?"textarea":"input");
-      if(f.t==="t")x.type="text";
-      x.placeholder=f.ph;
-      x.oninput=function(){S.v[i]=x.value.trim();render()};
+      x = el(f.t === "a" ? "textarea" : "input"); x.id = id;
+      if (f.t === "t") { x.type = "text"; x.autocomplete = "off"; }
+      x.placeholder = f.ph;
+      x.addEventListener("input", function () {
+        S.v[i] = x.value.trim();
+        if (note) note.hidden = !!S.v[i];
+        render();
+      });
       w.appendChild(x);
     }
+    if (note) w.appendChild(note);
     b.appendChild(w);
   });
 }
 
-function list(){
-  var b=$("plist");b.innerHTML="";
-  P.filter(function(p){return p.c===S.c}).forEach(function(p){
-    var lab=el("label"),i=el("input");
-    i.type="radio";i.name="prompt";
-    i.onchange=function(){S.p=p;levels();fields();reveal();render()};
-    var s=el("span");
-    s.appendChild(el("b","",p.n));
-    s.appendChild(el("em","",p.lv+" · "+p.t));
-    s.appendChild(el("div","",p.d));
-    lab.appendChild(i);lab.appendChild(s);
+function list() {
+  var b = $("plist");
+  b.innerHTML = "";
+  P.filter(function (p) { return p.c === S.c; }).forEach(function (p) {
+    var lab = el("label"), i = el("input");
+    i.type = "radio"; i.name = "prompt"; i.value = p.id;
+    if (S.p && S.p.id === p.id) i.checked = true;
+    i.addEventListener("change", function () { choose(p, false); });
+    var s = el("span");
+    s.appendChild(el("span", "t", p.n));
+    s.appendChild(el("span", "m", p.lv + " · " + p.t));
+    s.appendChild(el("span", "d", p.d));
+    lab.appendChild(i); lab.appendChild(s);
     b.appendChild(lab);
   });
 }
 
-function copy(){
-  var t=$("out").textContent, st=$("status"), btn=$("copy");
-  function ok(){
-    st.textContent="Скопійовано. Вставте промпт у новий чат.";
-    btn.style.background = "linear-gradient(135deg, #059669, #10b981)";
-    btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Скопійовано!`;
-    setTimeout(function(){
-      btn.style.background = "";
-      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Скопіювати промпт`;
-    }, 2500);
-  }
-  function fb(){
-    try{
-      var a=document.createElement("textarea");
-      a.value=t;a.style.position="fixed";a.style.opacity="0";
-      document.body.appendChild(a);a.select();
-      var r=document.execCommand("copy");
-      document.body.removeChild(a);
-      if(r)ok();
-      else st.textContent="Не вдалося скопіювати автоматично. Виділіть текст у рамці й скопіюйте вручну.";
-    }catch(e){
-      st.textContent="Не вдалося скопіювати автоматично. Виділіть текст у рамці й скопіюйте вручну.";
-    }
-  }
-  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}
+function update() {
+  var fresh = reveal();
+  render();
+  if (fresh.length) scrollToId(nextStep());
 }
 
-radios($("cats"),"cat",CATS.filter(function(c){return P.some(function(p){return p.c===c[0]})}).map(function(c){return[c[0],c[1]+" ("+P.filter(function(p){return p.c===c[0]}).length+")"]}),null,function(v){
-  S.c=v;S.p=null;S.lv=null;S.v=[];list();reveal();
-});
+/* Вибір промпту зі списку (список не перебудовуємо, щоб не губити фокус) */
+function choose(p, force) {
+  S.p = p; S.v = [];
+  levels(); fields(); renderNext(); setHash(p.id);
+  var fresh = reveal();
+  render();
+  if (fresh.length || force) scrollToId(nextStep());
+}
 
-radios($("lang"),"lang",LANGS,null,function(v){S.lang=v;reveal();render()});
-radios($("mode"),"mode",MODES,null,function(v){S.mode=v;reveal();render()});
-$("copy").onclick=copy;
+/* Перехід до іншого промпту (кнопки «Що далі», посилання з #id) */
+function jump(p) {
+  S.c = p.c; S.p = p;
+  setRadio("cat", p.c);
+  list();
+  choose(p, true);
+}
 
-// Theme Switcher Logic
-var currentTheme = "dark";
-var themeBtn = $("themeToggle");
-var themeIcon = $("themeIcon");
-
-var sunSvg = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
-var moonSvg = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
-
-themeBtn.onclick = function() {
-  if (currentTheme === "dark") {
-    document.documentElement.setAttribute("data-theme", "light");
-    currentTheme = "light";
-    themeIcon.innerHTML = moonSvg;
-  } else {
-    document.documentElement.setAttribute("data-theme", "dark");
-    currentTheme = "dark";
-    themeIcon.innerHTML = sunSvg;
-  }
-};
-
-// Interactive Card Spotlight on Mousemove
-document.addEventListener('mousemove', function(e) {
-  document.querySelectorAll('section').forEach(function(sec) {
-    var rect = sec.getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
-    sec.style.backgroundImage = `radial-gradient(400px circle at ${x}px ${y}px, rgba(16, 185, 129, 0.06), transparent 40%)`;
+/* ---------- Копіювання ---------- */
+function legacyCopy(t) {
+  return new Promise(function (res, rej) {
+    var a = document.createElement("textarea");
+    a.value = t; a.setAttribute("readonly", "");
+    a.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+    document.body.appendChild(a);
+    a.select();
+    try { a.setSelectionRange(0, t.length); } catch (e) {}
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(a);
+    ok ? res() : rej(new Error("copy failed"));
   });
-});
+}
+
+function copyText(t) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(t).catch(function () { return legacyCopy(t); });
+  }
+  return legacyCopy(t);
+}
+
+function selectOutput() {
+  try {
+    var r = document.createRange(), s = window.getSelection();
+    r.selectNodeContents($("out"));
+    s.removeAllRanges(); s.addRange(r);
+  } catch (e) {}
+}
+
+var copyTimer = null;
+function copy() {
+  var btn = $("copy"), st = $("status"), t = $("out").textContent;
+  copyText(t).then(function () {
+    st.textContent = "Скопійовано. Вставте промпт у новий чат.";
+    btn.classList.add("done");
+    $("copyLabel").textContent = "Скопійовано!";
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () {
+      btn.classList.remove("done");
+      $("copyLabel").textContent = "Скопіювати промпт";
+    }, 2500);
+  }, function () {
+    selectOutput();
+    st.textContent = "Не вдалося скопіювати автоматично. Текст виділено: натисніть Ctrl+C (на телефоні: «Копіювати»).";
+  });
+}
+
+/* ---------- Тема ---------- */
+var SUN = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+var MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+
+function applyTheme(t, save) {
+  document.documentElement.setAttribute("data-theme", t);
+  $("themeIcon").innerHTML = t === "dark" ? SUN : MOON;
+  var label = t === "dark" ? "Увімкнути світлу тему" : "Увімкнути темну тему";
+  $("themeToggle").setAttribute("aria-label", label);
+  $("themeToggle").title = label;
+  var m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.setAttribute("content", t === "dark" ? "#04120e" : "#f0fdf4");
+  if (save) store.set("theme", t);
+}
+
+/* ---------- Ініціалізація ---------- */
+(function init() {
+  var savedLv = store.get("lv"), savedLang = store.get("lang");
+  if (savedLv && (LV.indexOf(savedLv) !== -1 || savedLv === NOT_SURE)) S.lv = savedLv;
+  if (savedLang && LANGS.some(function (l) { return l[0] === savedLang; })) S.lang = savedLang;
+
+  var cats = CATS.filter(function (c) { return P.some(function (p) { return p.c === c[0]; }); })
+    .map(function (c) { return [c[0], c[1] + " (" + P.filter(function (p) { return p.c === c[0]; }).length + ")"]; });
+  radios($("cats"), "cat", cats, null, function (v) {
+    S.c = v; S.p = null; S.v = [];
+    setHash("");
+    list();
+    update();
+  });
+  radios($("lang"), "lang", LANGS, S.lang, function (v) { S.lang = v; store.set("lang", v); update(); });
+  radios($("mode"), "mode", MODES, null, function (v) { S.mode = v; update(); });
+  $("copy").addEventListener("click", copy);
+
+  applyTheme(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark", false);
+  $("themeToggle").addEventListener("click", function () {
+    applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
+  });
+  if (window.matchMedia) {
+    var mq = matchMedia("(prefers-color-scheme: light)");
+    var onSys = function (e) { if (!store.get("theme")) applyTheme(e.matches ? "light" : "dark", false); };
+    if (mq.addEventListener) mq.addEventListener("change", onSys);
+  }
+
+  /* Підсвітка секції під курсором: лише для миші, лише для секції під курсором */
+  var raf = 0;
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType === "touch" || raf) return;
+    var sec = e.target && e.target.closest ? e.target.closest("section") : null;
+    if (!sec) return;
+    raf = requestAnimationFrame(function () {
+      raf = 0;
+      var r = sec.getBoundingClientRect();
+      sec.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      sec.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
+
+  /* Пряме посилання на промпт: …/generator/#lab */
+  var h = (location.hash || "").slice(1);
+  var hp = P.filter(function (p) { return p.id === h; })[0];
+  if (hp) jump(hp);
+})();
+
+})();
 </script>
 </body>
 </html>
