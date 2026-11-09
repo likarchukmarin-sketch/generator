@@ -1,0 +1,168 @@
+/* =====================================================================
+   labels.js — УКРАЇНСЬКИЙ ІНТЕРФЕЙС для полів і варіантів.
+   У промпт завжди потрапляє англійське значення; тут лише те,
+   що бачить користувач. Якщо запису немає, показується оригінал.
+   ===================================================================== */
+
+/* Короткий опис категорій (показується над списком промптів) */
+var CAT_DESC={
+  start:"Визначте свій рівень і складіть реалістичний план.",
+  lex:"Нові слова, природні поєднання, хибні друзі, тренування вашого списку слів.",
+  gram:"Правила, ваші власні помилки, типові пастки для україномовних.",
+  wr:"Відгук на ваш текст і письмові завдання з другою спробою.",
+  read:"Тексти за вашим рівнем, ваші матеріали, підбір ресурсів.",
+  exp:"Знаєте, що хочете сказати, але не знаєте як? Або звучить неприродно?",
+  goal:"Подорожі, співбесіда, робоча комунікація.",
+  rev:"Зошит помилок і повторення вивченого з пам’яті.",
+  speak:"Розмова з ШІ, рольові ігри, монологи."
+};
+
+/* Українські назви промптів (англійська назва лишається як ідентифікатор) */
+var PROMPT_UK={
+  lvl:"Визначити мій рівень",
+  plan:"Мій план навчання",
+  word:"Розбір слова чи виразу",
+  conf:"Схожі слова та хибні друзі",
+  life:"Слова для мого життя",
+  coll:"Сполучення слів і фразові дієслова",
+  lab:"Тренування моїх слів",
+  rule:"Відкрити правило самому",
+  clinic:"Граматична клініка (мої помилки)",
+  sit:"Граматика в ситуаціях",
+  traps:"Типові помилки україномовних",
+  fb:"Відгук на мій текст",
+  wi:"Пишу й покращую",
+  read:"Читання з завданнями",
+  own:"Урок із мого матеріалу",
+  find:"Підбір ресурсів для навчання",
+  say:"Як це сказати англійською?",
+  nat:"Зробити речення природнішим",
+  every:"Побутові ситуації за кордоном",
+  interview:"Підготовка до співбесіди",
+  workcomm:"Робоче спілкування",
+  notebook:"Зошит помилок",
+  review:"Повторення з пам’яті",
+  partner:"Розмова з ШІ-партнером",
+  native:"Жива розмова (режим носія)",
+  role:"Рольова гра",
+  keep:"Підтримати розмову",
+  talk:"Монолог (Talk Studio)"
+};
+
+/* Рівні: код + пояснення */
+var LEVEL_UK={
+  "A1":"A1 · початківець",
+  "A2":"A2 · базовий",
+  "B1":"B1 · середній",
+  "B2":"B2 · вище середнього",
+  "C1":"C1 · просунутий",
+  "not sure":"Не знаю"
+};
+
+/* Поля: "English label": ["Українська назва", "підказка у полі", ["типи нотаток для вставки"]] */
+var LABEL_UK={
+  "My goal":["Ваша мета","напр.: говорити в подорожах"],
+  "Goal":["Ваша мета","напр.: пройти співбесіду, скласти IELTS"],
+  "Time I have":["Скільки часу маєте","напр.: 15 хвилин на день, 5 днів на тиждень"],
+  "My interests":["Ваші інтереси","напр.: фільми, футбол, кулінарія"],
+  "What is hardest for me":["Що дається найважче"],
+  "My LEVEL SUMMARY from Level Check (optional)":["Підсумок рівня з «Визначити мій рівень»","Вставте блок MY LEVEL SUMMARY",["level"]],
+  "The word or expression":["Слово або вираз","напр.: run out of"],
+  "The sentence where I saw it (optional)":["Речення, де ви це побачили"],
+  "Words I confuse (2-3)":["Слова, які плутаєте (2–3)","напр.: say, tell, speak"],
+  "OR an English word that looks like a Ukrainian word (a \"false friend\") that I want to check":["Або англійське слово, схоже на українське («хибний друг»), яке хочете перевірити"],
+  "My situation (job, hobby, or place where I need English)":["Ваша ситуація: робота, хобі чи місце, де потрібна англійська","напр.: я маркетолог і працюю з іноземними клієнтами"],
+  "Topic":["Тема"],
+  "Focus":["На чому зосередитись"],
+  "Mode":["Режим тренування"],
+  "Reading text length":["Довжина тексту для читання"],
+  "Topic for the reading text (optional)":["Тема тексту для читання","напр.: подорожі"],
+  "My vocabulary list (any format is fine, with or without translations or examples)":["Ваш список слів (будь-який формат)","Вставте слова, напр.: apple - яблуко",["words"]],
+  "Grammar point":["Граматична тема"],
+  "My material (my own texts, messages, dictated speech, corrections from a teacher, or mistakes I know I make)":["Ваш матеріал: власні тексти, повідомлення, виправлення від викладача чи помилки, які знаєте за собою","Вставте текст англійською",["mistakes","notebook"]],
+  "Grammar contrast to practise":["Яку пару форм тренувати"],
+  "Situations":["Ситуації"],
+  "How I answer":["Як ви відповідатимете"],
+  "Was the text dictated?":["Текст був продиктований?"],
+  "Type and reader of my text (for example, an email to my manager, a message to a friend)":["Що це за текст і хто його читатиме","напр.: лист керівнику, повідомлення другу"],
+  "My text":["Ваш текст","Вставте текст англійською"],
+  "Goal and interests":["Мета й інтереси","напр.: працюю в IT, люблю подорожі"],
+  "Text type I would like":["Який тип тексту"],
+  "Length":["Довжина"],
+  "Do I dictate?":["Ви диктуватимете?"],
+  "Text length":["Довжина тексту"],
+  "Type of material":["Тип матеріалу"],
+  "My material":["Ваш матеріал","Вставте текст англійською"],
+  "Types of resources I want":["Які ресурси шукати"],
+  "English variety I prefer":["Бажаний варіант англійської"],
+  "Time I can spend":["Скільки часу можете приділяти"],
+  "Can you open web pages in this chat?":["Чи вміє ШІ відкривати сайти в цьому чаті?"],
+  "The idea I want to say (write in Ukrainian, or mix Ukrainian and English)":["Що хочете сказати","Напишіть українською або вперемішку з англійською"],
+  "Who I am talking to and where (for example, my manager, a friend, a shop assistant)":["З ким і де ви говорите","напр.: з керівником, у магазині"],
+  "Context (who I am talking to and where, optional)":["Контекст: з ким і де ви говорите"],
+  "Did I dictate this?":["Ви це диктували?"],
+  "My English (1-3 sentences)":["Ваше англійське речення (1–3)","Вставте речення"],
+  "Situation":["Ситуація"],
+  "Country or English variety (for example, UK, USA, Ireland, Canada)":["Країна або варіант англійської","напр.: UK, USA, Ireland"],
+  "What worries me most (for example, I don't understand fast speech)":["Що турбує найбільше","напр.: не розумію швидке мовлення"],
+  "The job I am applying for (job title and short description, or paste the job advert)":["Посада, на яку подаєтесь: назва й короткий опис або текст вакансії","напр.: Customer Support Manager"],
+  "My real experience (short notes, in any language)":["Ваш реальний досвід (короткі нотатки, будь-якою мовою)","напр.: 3 роки в підтримці клієнтів, навчав нових колег"],
+  "Interview type":["Тип співбесіди"],
+  "I will answer":["Як ви відповідатимете"],
+  "Task type":["Тип завдання"],
+  "My situation (who, what, and what I need to achieve)":["Ваша ситуація: хто, що і чого треба досягти","напр.: пишу клієнту про затримку замовлення"],
+  "My own draft or notes (optional, in any language)":["Ваша чернетка або нотатки (необов’язково, будь-якою мовою)"],
+  "My new mistakes (paste any \"MISTAKES TO SAVE\" blocks, corrections from a teacher, or mistakes I noticed)":["Нові помилки: блоки MISTAKES TO SAVE, виправлення від викладача або помилки, які помітили","Вставте помилки",["mistakes"]],
+  "My existing notebook (optional)":["Ваш наявний зошит помилок (необов’язково)","Вставте попередню версію зошита",["notebook"]],
+  "How long ago I studied this (approximately)":["Як давно це вивчали"],
+  "My material (paste a \"WORDS TO SAVE\" block, my word list, my notebook, or my notes; any format)":["Що повторюємо: блок WORDS TO SAVE, список слів, зошит помилок чи нотатки","Вставте матеріал",["words","mistakes","notebook"]],
+  "Topics I like":["Улюблені теми"],
+  "Support level":["Рівень підтримки"],
+  "When to correct me":["Коли виправляти"],
+  "Words or phrases I want to use today":["Слова чи фрази, які хочете використати сьогодні"],
+  "Words or phrases I want to use (optional)":["Слова чи фрази, які хочете використати"],
+  "I will":["Як ви спілкуватиметесь"],
+  "English variety":["Варіант англійської"],
+  "Slang level":["Рівень сленгу"],
+  "Situation (paste my SCENARIO block, or describe it, for example \"buying a train ticket\")":["Ситуація: вставте блок SCENARIO або опишіть самі","напр.: купую квиток на потяг",["scenario"]],
+  "MY ROLE (who I play)":["Ваша роль"],
+  "YOUR ROLE (who you play; leave empty and I will suggest it)":["Роль ШІ (якщо залишити порожнім, ШІ запропонує сам)"],
+  "My goal in the scene":["Ваша мета в сцені","напр.: повернути гроші за товар"],
+  "Difficulty":["Складність"],
+  "Feedback":["Коли давати відгук"],
+  "Type":["Тип монологу"]
+};
+
+/* Варіанти вибору: значення в промпті → що бачить користувач */
+var OPT_UK={
+  "no":"Ні","yes":"Так","not sure":"Не знаю",
+  "speaking":"Говоріння","remembering words":"Запам’ятовування слів","grammar":"Граматика","understanding people":"Розуміння на слух","writing":"Письмо",
+  "both":"Обидва","collocations":"Сполучення слів","phrasal verbs":"Фразові дієслова",
+  "articles":"Артиклі","tenses":"Часи","prepositions":"Прийменники","word order":"Порядок слів",
+  "B = interactive, one task at a time":"B — інтерактивно, по одному завданню",
+  "A = complete worksheet":"A — готовий аркуш із вправами",
+  "you decide":"На розсуд ШІ","short":"Короткий","medium":"Середній","long":"Довгий","longer":"Довший","low":"Низький","high":"Високий",
+  "work":"Робота","travel":"Подорожі","everyday life":"Повсякденне життя","movies":"Фільми","food":"Їжа","technology":"Технології","hobbies":"Хобі","health":"Здоров’я","family":"Сім’я",
+  "typing":"Друкуватиму","dictating":"Диктуватиму","dictating or speaking":"Диктуватиму або говоритиму",
+  "type":"Друкуватиму","dictate":"Диктуватиму","speak aloud":"Говоритиму вголос",
+  "any":"Будь-який","message":"Повідомлення","email":"Лист","opinion":"Думка","description":"Опис","story":"Історія",
+  "about 1 minute":"≈ 1 хвилина","about 2 minutes":"≈ 2 хвилини",
+  "article":"Стаття","textbook page":"Сторінка підручника","email or chat":"Лист або чат","video transcript":"Транскрипт відео","podcast transcript":"Транскрипт подкасту","other":"Інше",
+  "YouTube":"YouTube","podcasts":"Подкасти","films and series":"Фільми й серіали","books and graded readers":"Книжки й graded readers","articles and websites":"Статті й сайти","dictionaries":"Словники","games":"Ігри",
+  "no preference":"Без різниці","American":"Американська","British":"Британська","Australian":"Австралійська","neutral international":"Нейтральна міжнародна",
+  "airport":"Аеропорт","hotel":"Готель","restaurant":"Ресторан","doctor":"Лікар","pharmacy":"Аптека","renting a flat":"Оренда житла","bank":"Банк","post office":"Пошта","shop":"Магазин","public transport":"Громадський транспорт","government office":"Державна установа",
+  "general":"Загальна","technical":"Технічна","behavioural":"Поведінкова","customer service":"Клієнтський сервіс",
+  "meeting":"Нарада","phone call":"Телефонний дзвінок","video call":"Відеодзвінок","presentation":"Презентація","negotiation":"Перемовини",
+  "university (email to a teacher, seminar, presentation)":"Університет (лист викладачу, семінар, презентація)",
+  "3 days":"3 дні","1 week":"1 тиждень","1 month":"1 місяць",
+  "medium (hints only when I ask)":"Середній (підказки лише на прохання)",
+  "high (sentence starters and options)":"Високий (початки речень і варіанти)",
+  "low (no help unless I ask)":"Низький (без допомоги, поки не попросите)",
+  "during the conversation":"Під час розмови","only after":"Лише після розмови","summary only":"Лише підсумок наприкінці",
+  "realistic":"Реалістична","gentle":"М’яка","tough":"Складна",
+  "after the scene":"Після сцени","I will ask for it":"Коли я попрошу",
+  "work update":"Робочий апдейт","explaining a process":"Пояснення процесу","presentation opening":"Початок презентації","describing a problem":"Опис проблеми"
+};
+
+/* Типи збережених блоків (для «Моїх нотаток») */
+var NOTE_TYPES={words:"Слова",mistakes:"Помилки",level:"Рівень",scenario:"Сценарій",notebook:"Зошит помилок",other:"Інше"};
