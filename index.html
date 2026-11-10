@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Генератор промптів для вивчення англійської</title>
 <meta name="description" content="Безкоштовний конструктор готових промптів для вивчення англійської з ШІ: 28 сценаріїв (слова, граматика, письмо, говоріння), рівні A1–C1. Відкрийте в ChatGPT, Claude чи Gemini.">
-<meta name="theme-color" content="#04120e" id="themeColor">
+<meta name="theme-color" content="#F5F0E6" id="themeColor">
 <meta property="og:title" content="Генератор промптів для вивчення англійської">
 <meta property="og:description" content="28 готових сценаріїв для занять англійською з ШІ. Оберіть рівень, скопіюйте промпт і починайте.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2310b981'/%3E%3Ctext x='32' y='43' font-size='32' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%23022c22'%3EEn%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231F5A47'/%3E%3Ctext x='32' y='43' font-size='32' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%23F5F0E6'%3EEn%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -18,349 +18,322 @@
 (function(){try{var t=localStorage.getItem("gen-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();
 </script>
 <style>
+/* =====================================================================
+   Палітра (затверджена):
+   Оксамитовий зелений #1F5A47 · Глибокий зелений #164A3A · Крем #F5F0E6
+   Чорнило #12261F · Світлий зелений #D3E2D9 · Пудрово-рожевий #E6C4BF
+   Рожевий — лише як ЗАЛИВКА під темним текстом (на кремі його контраст 1.4:1).
+   ===================================================================== */
 :root {
-  color-scheme: dark;
-  --bg: #04120e;
-  --card: rgba(10, 31, 24, 0.75);
-  --card-hover: rgba(16, 44, 34, 0.85);
-  --ink: #e6f5f0;
-  --mut: #8fb8aa;
-  --line: rgba(74, 222, 128, 0.18);
-  --acc: #10b981;
-  --acc-glow: rgba(16, 185, 129, 0.35);
-  --acc-bright: #34d399;
-  --accink: #022c22;
-  --sel: rgba(16, 185, 129, 0.18);
-  --code: #021a14;
-  --field: rgba(0, 0, 0, 0.25);
-  --chip: rgba(255, 255, 255, 0.03);
-  --accent-green: #4ade80;
-  --warn: #fbbf24;
-  --blur: blur(16px);
-}
-
-:root[data-theme="light"] {
   color-scheme: light;
-  --bg: #f0fdf4;
-  --card: rgba(255, 255, 255, 0.88);
-  --card-hover: #ffffff;
-  --ink: #062c19;
-  --mut: #3b6f52;
-  --line: rgba(5, 150, 105, 0.25);
-  --acc: #059669;
-  --acc-glow: rgba(5, 150, 105, 0.25);
-  --acc-bright: #047857;
-  --sel: rgba(16, 185, 129, 0.14);
-  --code: #ecfdf5;
-  --field: #ffffff;
-  --chip: rgba(255, 255, 255, 0.7);
-  --accent-green: #047857;
-  --warn: #92400e;
+  --velvet: #1F5A47;
+  --deep: #164A3A;
+  --cream: #F5F0E6;
+  --ink-c: #12261F;
+  --sage: #D3E2D9;
+  --blush: #E6C4BF;
+
+  --bg: var(--cream);
+  --card: rgba(255, 255, 255, 0.55);
+  --ink: var(--ink-c);
+  --mut: #525F57;
+  --line: rgba(31, 90, 71, 0.28);
+  --panel: var(--sage);
+  --panel-ink: var(--ink-c);
+  --btn: var(--velvet);
+  --btn-hover: var(--deep);
+  --btn-ink: var(--cream);
+  --accent: var(--blush);
+  --accent-ink: var(--ink-c);
+  --sel-bg: var(--sage);
+  --sel-line: var(--velvet);
+  --link: var(--velvet);
+  --head: var(--velvet);
+  --tag-bg: var(--sage);
+  --tag-ink: var(--ink-c);
+  --field: #FFFFFF;
+  --code: rgba(211, 226, 217, 0.55);
+  --shadow: 0 2px 10px rgba(18, 38, 31, 0.06);
 }
 
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    color-scheme: light;
-    --bg: #f0fdf4;
-    --card: rgba(255, 255, 255, 0.88);
-    --card-hover: #ffffff;
-    --ink: #062c19;
-    --mut: #3b6f52;
-    --line: rgba(5, 150, 105, 0.25);
-    --acc: #059669;
-    --acc-glow: rgba(5, 150, 105, 0.25);
-    --acc-bright: #047857;
-    --sel: rgba(16, 185, 129, 0.14);
-    --code: #ecfdf5;
-    --field: #ffffff;
-    --chip: rgba(255, 255, 255, 0.7);
-    --accent-green: #047857;
-    --warn: #92400e;
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: var(--ink-c);
+  --card: var(--deep);
+  --ink: var(--cream);
+  --mut: #BCCBC3;
+  --line: rgba(211, 226, 217, 0.28);
+  --panel: var(--velvet);
+  --panel-ink: var(--cream);
+  --btn: var(--blush);
+  --btn-hover: #F0D6D2;
+  --btn-ink: var(--ink-c);
+  --accent: var(--blush);
+  --accent-ink: var(--ink-c);
+  --sel-bg: var(--velvet);
+  --sel-line: var(--blush);
+  --link: var(--blush);
+  --head: var(--cream);
+  --tag-bg: var(--velvet);
+  --tag-ink: var(--cream);
+  --field: var(--ink-c);
+  --code: var(--ink-c);
+  --shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: var(--ink-c);
+    --card: var(--deep);
+    --ink: var(--cream);
+    --mut: #BCCBC3;
+    --line: rgba(211, 226, 217, 0.28);
+    --panel: var(--velvet);
+    --panel-ink: var(--cream);
+    --btn: var(--blush);
+    --btn-hover: #F0D6D2;
+    --btn-ink: var(--ink-c);
+    --accent: var(--blush);
+    --accent-ink: var(--ink-c);
+    --sel-bg: var(--velvet);
+    --sel-line: var(--blush);
+    --link: var(--blush);
+    --head: var(--cream);
+    --tag-bg: var(--velvet);
+    --tag-ink: var(--cream);
+    --field: var(--ink-c);
+    --code: var(--ink-c);
+    --shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
   }
 }
 
 *, *:before, *:after { box-sizing: border-box; }
-
 html { scroll-padding-top: 16px; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font: 15px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font: 16px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   counter-reset: st;
   min-height: 100vh;
   min-height: 100dvh;
-  position: relative;
   overflow-x: hidden;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.skip {
-  position: absolute; left: 12px; top: -48px; z-index: 10;
-  background: var(--acc); color: var(--accink); padding: 10px 14px; border-radius: 8px; font-weight: 600;
-}
+.skip { position: absolute; left: 12px; top: -48px; z-index: 60; background: var(--btn); color: var(--btn-ink); padding: 10px 14px; border-radius: 8px; font-weight: 600; }
 .skip:focus { top: 12px; }
 
-/* Фон */
-.bg-blobs { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float 20s infinite ease-in-out alternate; will-change: transform; }
-.blob-1 { width: 450px; height: 450px; background: var(--accent-green); top: -100px; right: -100px; }
-.blob-2 { width: 500px; height: 500px; background: var(--acc); bottom: -150px; left: -100px; animation-delay: -7s; }
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, 60px) scale(1.1); }
-  100% { transform: translate(-30px, -20px) scale(0.95); }
-}
+main { max-width: 760px; margin: 0 auto; padding: 20px 16px 80px; }
 
-main { max-width: 780px; margin: 0 auto; padding: 24px 16px 80px; position: relative; z-index: 1; }
+:focus-visible { outline: 3px solid var(--sel-line); outline-offset: 2px; }
+[hidden] { display: none !important; }
 
-.top-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+/* ---------- Верх ---------- */
+.top-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 18px; }
 
 .theme-btn {
-  background: var(--card); border: 1px solid var(--line); color: var(--ink);
   width: 44px; height: 44px; border-radius: 12px; cursor: pointer;
+  background: transparent; border: 1px solid var(--line); color: var(--ink);
   display: flex; align-items: center; justify-content: center;
-  -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
-  transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.theme-btn:hover { border-color: var(--acc-bright); transform: scale(1.05); }
-
-:focus-visible { outline: 2px solid var(--acc-bright); outline-offset: 2px; }
+.theme-btn:hover { background: var(--panel); color: var(--panel-ink); }
 
 h1 {
-  font: 700 clamp(1.7rem, 5vw, 2.2rem)/1.25 "Source Serif 4", Georgia, serif;
-  margin: 0 0 10px; letter-spacing: -0.02em; color: var(--ink);
-}
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  h1 {
-    background: linear-gradient(135deg, var(--ink) 30%, var(--mut));
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-  }
+  font: 700 clamp(1.75rem, 5.2vw, 2.35rem)/1.2 "Source Serif 4", Georgia, serif;
+  margin: 0 0 10px; letter-spacing: -0.01em; color: var(--head);
 }
 
-.lead { color: var(--mut); margin: 0 0 24px; font-size: 1.05rem; line-height: 1.6; }
+.lead { color: var(--mut); margin: 0 0 18px; font-size: 1.05rem; line-height: 1.6; max-width: 62ch; }
 
+/* «Як це працює» */
+.how { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; counter-reset: how; }
+.how li {
+  counter-increment: how; background: var(--panel); color: var(--panel-ink);
+  border-radius: 12px; padding: 12px 14px; font-size: 0.9rem; line-height: 1.4;
+}
+.how li:before {
+  content: counter(how); display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; margin-right: 8px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 0.82rem;
+}
+.how b { display: block; margin: 6px 0 2px; font-size: 0.95rem; }
+.how li > span { display: block; color: inherit; opacity: 0.9; }
+@media (max-width: 560px) { .how { grid-template-columns: 1fr; } .how li b { display: inline; margin: 0 4px 0 0; } .how li > span { display: inline; } }
+
+/* ---------- Кроки ---------- */
 section {
-  margin: 0 0 20px;
-  background: var(--card);
-  -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  transition: border-color 0.25s ease;
-  position: relative;
-  overflow: hidden;
-  scroll-margin-top: 16px;
+  margin: 0 0 18px; background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; padding: 20px; box-shadow: var(--shadow); scroll-margin-top: 16px;
 }
-section:hover { border-color: var(--acc-bright); }
-section:not([hidden]) { counter-increment: st; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+section:not([hidden]) { counter-increment: st; animation: fadeIn .3s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-section h2 { font: 600 1.15rem/1.3 "Plus Jakarta Sans", sans-serif; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+section h2 { font: 700 1.2rem/1.3 "Source Serif 4", Georgia, serif; margin: 0 0 10px; display: flex; align-items: center; gap: 10px; }
 section h2:before {
-  content: counter(st);
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; flex: none; border-radius: 8px;
-  background: var(--sel); color: var(--acc-bright); font-size: 0.85rem; font-weight: 700;
+  content: counter(st); display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; flex: none; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink); font: 700 0.88rem "Plus Jakarta Sans", sans-serif;
 }
 
-.hint { font-size: 0.88rem; line-height: 1.5; color: var(--mut); margin: -4px 0 14px; }
-
-/* Пошук */
-.search { margin: 0 0 14px; }
-.search input { width: 100%; }
-
-/* Радіо-кнопки й картки */
-.opts { display: flex; flex-wrap: wrap; gap: 10px; }
-.opts label, .cards label { cursor: pointer; position: relative; display: block; }
-
-input[type=radio] { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
-
-.opts span {
-  display: block; padding: 11px 16px; min-height: 44px;
-  border: 1px solid var(--line); border-radius: 10px; background: var(--chip);
-  font-weight: 500; font-size: 0.93rem;
-  transition: border-color .2s, background-color .2s, transform .2s, box-shadow .2s;
-}
-.opts label:hover span { border-color: var(--acc); background: var(--sel); }
-input:checked + span { background: var(--sel); border-color: var(--acc); color: var(--acc-bright); box-shadow: 0 0 0 1px var(--acc), 0 4px 12px var(--acc-glow); }
-input:focus-visible + span { outline: 2px solid var(--acc-bright); outline-offset: 2px; }
-
-.cards { display: grid; gap: 10px; }
-.cards span {
-  display: block; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--chip);
-  transition: border-color .2s, background-color .2s, transform .2s, box-shadow .2s;
-}
-.cards label:hover span { border-color: var(--acc); background: var(--card-hover); box-shadow: 0 6px 20px rgba(0,0,0,.12); }
-.cards b { display: block; font-size: 1.02rem; margin-bottom: 4px; color: var(--ink); }
-.cards .desc { color: var(--mut); font-size: 0.9rem; }
+.hint { font-size: 0.92rem; line-height: 1.5; color: var(--mut); margin: 0 0 14px; }
+.req { color: var(--ink); font-weight: 700; }
 .empty { color: var(--mut); margin: 0; }
 
-/* Поля */
-.fl { margin: 0 0 16px; }
-.fl label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+/* ---------- Вибір: чипи й картки ---------- */
+.opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.opts label, .cards label { cursor: pointer; position: relative; display: block; }
+input[type=radio] { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+
+.opts label > span {
+  display: block; padding: 11px 16px; min-height: 44px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--field); color: var(--ink); font-weight: 500; font-size: 0.95rem;
+  transition: background-color .15s, border-color .15s, box-shadow .15s;
+}
+:root[data-theme="dark"] .opts span, :root[data-theme="dark"] .cards label > span { background: transparent; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .opts span, :root:not([data-theme="light"]) .cards label > span { background: transparent; } }
+.opts label:hover > span, .cards label:hover > span { border-color: var(--sel-line); }
+.opts input:checked + span {
+  background: var(--sel-bg); color: var(--panel-ink); border-color: var(--sel-line);
+  box-shadow: 0 0 0 1px var(--sel-line); font-weight: 600;
+}
+.opts input:checked + span:before { content: "✓ "; }
+input:focus-visible + span { outline: 3px solid var(--sel-line); outline-offset: 2px; }
+
+.cards { display: grid; gap: 10px; }
+.cards label > span {
+  display: block; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--field);
+  transition: background-color .15s, border-color .15s, box-shadow .15s;
+}
+.cards input:checked + span { background: var(--sel-bg); color: var(--panel-ink); border-color: var(--sel-line); box-shadow: 0 0 0 2px var(--sel-line); }
+.cards b { display: block; font-size: 1.05rem; margin-bottom: 2px; }
+.cards small.en { display: block; color: var(--mut); font-size: 0.82rem; font-weight: 500; margin: 0 0 8px; }
+.cards input:checked + span small.en, .cards input:checked + span .desc { color: inherit; }
+.cards .desc { color: var(--mut); font-size: 0.92rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+.tag {
+  display: inline-block; font-size: 0.78rem; font-weight: 600; line-height: 1; padding: 5px 9px; border-radius: 999px;
+  background: var(--tag-bg); color: var(--tag-ink); border: 1px solid transparent;
+}
+.cards input:checked + span .tag { background: var(--cream); color: var(--ink-c); }
+.tag.adult, .cards input:checked + span .tag.adult { background: var(--blush); color: var(--ink-c); }
+.tag.cat, .cards input:checked + span .tag.cat { background: transparent; color: var(--mut); border-color: var(--line); }
+
+/* ---------- Поля ---------- */
+.search input { width: 100%; }
+.fl { margin: 0 0 18px; }
+.fl label { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
 .fl .o { font-weight: 400; color: var(--mut); }
-.fl .req { color: var(--warn); font-weight: 700; }
+.fieldhint { margin: 6px 0 0; font-size: 0.85rem; color: var(--mut); }
 
 input[type=text], input[type=search], textarea, select {
   width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
-  background: var(--field); color: var(--ink); font: inherit; font-size: 16px; /* 16px: iOS не зумить поле */
-  transition: border-color .2s, box-shadow .2s;
+  background: var(--field); color: var(--ink); font: inherit; font-size: 16px; /* 16px: iOS не зумить */
 }
-input[type=text]:focus, input[type=search]:focus, textarea:focus, select:focus {
-  outline: none; border-color: var(--acc-bright); box-shadow: 0 0 0 3px var(--acc-glow);
-}
-input::placeholder, textarea::placeholder { color: var(--mut); opacity: 0.8; }
+input[type=text]:focus, input[type=search]:focus, textarea:focus, select:focus { outline: 3px solid var(--sel-line); outline-offset: 1px; border-color: var(--sel-line); }
+input::placeholder, textarea::placeholder { color: var(--mut); opacity: 1; }
 textarea { min-height: 110px; resize: vertical; }
 .fl select + input { margin-top: 8px; }
 
-/* Результат */
-pre {
-  background: var(--code); border: 1px solid var(--line); border-radius: 12px; padding: 18px;
-  white-space: pre-wrap; word-break: break-word;
-  font: 400 0.86rem/1.6 "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  max-height: 480px; overflow: auto; margin: 0 0 10px; box-shadow: inset 0 2px 8px rgba(0,0,0,.12);
-  user-select: all; -webkit-user-select: all;
-}
-.meta { font-size: 0.82rem; color: var(--mut); margin: 0 0 14px; }
-
-.warn {
-  margin: 0 0 14px; padding: 10px 14px; border-radius: 10px;
-  border: 1px solid var(--warn); color: var(--warn); font-size: 0.9rem; font-weight: 500;
-}
+/* ---------- Результат ---------- */
+.choice { margin: 0 0 14px; padding: 10px 14px; background: var(--panel); color: var(--panel-ink); border-radius: 10px; font-size: 0.92rem; }
+.warn { margin: 0 0 14px; padding: 12px 14px; border-radius: 10px; background: var(--accent); color: var(--accent-ink); font-size: 0.92rem; font-weight: 600; border: 1px solid var(--ink-c); }
 
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 button.action-btn {
-  font: 600 0.98rem/1 "Plus Jakarta Sans", sans-serif;
-  padding: 14px 24px; min-height: 48px; border: 0; border-radius: 10px;
-  background: linear-gradient(135deg, #34d399, #10b981);
-  color: #022c22; cursor: pointer;
-  box-shadow: 0 4px 16px var(--acc-glow);
+  font: 700 1rem/1 "Plus Jakarta Sans", sans-serif; padding: 14px 24px; min-height: 50px; border: 0; border-radius: 12px;
+  background: var(--btn); color: var(--btn-ink); cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  transition: transform .2s, box-shadow .2s, filter .2s;
+  transition: background-color .15s, transform .15s;
 }
-button.action-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+button.action-btn:hover { background: var(--btn-hover); }
 button.action-btn:active { transform: translateY(1px); }
-button.action-btn.done { background: linear-gradient(135deg, #6ee7b7, #34d399); }
+button.action-btn.done { background: var(--deep); color: var(--cream); }
+:root[data-theme="dark"] button.action-btn.done { background: var(--velvet); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) button.action-btn.done { background: var(--velvet); } }
+
 .ghost {
-  font: 600 0.95rem/1 "Plus Jakarta Sans", sans-serif;
-  padding: 14px 20px; min-height: 48px; border-radius: 10px; cursor: pointer;
-  background: transparent; color: var(--ink); border: 1px solid var(--line);
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: border-color .2s, background-color .2s;
+  font: 600 0.95rem/1 "Plus Jakarta Sans", sans-serif; padding: 14px 20px; min-height: 48px; border-radius: 12px; cursor: pointer;
+  background: transparent; color: var(--ink); border: 1px solid var(--sel-line);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
+  transition: background-color .15s;
 }
-.ghost:hover { border-color: var(--acc); background: var(--sel); }
+.ghost:hover { background: var(--panel); color: var(--panel-ink); }
 
-.note { font-size: 0.85rem; line-height: 1.5; color: var(--mut); margin-top: 14px; }
-#status { font-weight: 600; color: var(--acc-bright); min-height: 1.5em; margin-bottom: 0; }
+.open-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 14px 0 0; }
+.open-row .lbl { font-size: 0.92rem; color: var(--mut); font-weight: 600; margin-right: 2px; }
+.howto { margin: 14px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--panel); color: var(--panel-ink); font-size: 0.92rem; line-height: 1.5; }
+.note { font-size: 0.88rem; line-height: 1.5; color: var(--mut); margin: 14px 0 0; }
+#status { font-weight: 600; color: var(--ink); min-height: 1.5em; margin: 10px 0 0; }
+.tip { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--mut); }
 
-[hidden] { display: none !important; }
+button.link { background: none; border: 0; padding: 0; margin: 0; font: inherit; font-weight: 700; color: var(--link); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
-pre::-webkit-scrollbar { width: 6px; height: 6px; }
-pre::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+details.preview { margin: 18px 0 0; border: 1px solid var(--line); border-radius: 12px; background: var(--code); }
+details.preview summary { cursor: pointer; padding: 12px 14px; font-weight: 600; font-size: 0.95rem; list-style: none; display: flex; align-items: center; gap: 8px; }
+details.preview summary::-webkit-details-marker { display: none; }
+details.preview summary:before { content: "▸"; display: inline-block; transition: transform .15s; }
+details.preview[open] summary:before { transform: rotate(90deg); }
+details.preview .meta { font-weight: 400; color: var(--mut); font-size: 0.85rem; margin-left: auto; }
+pre {
+  margin: 0; padding: 14px 16px; border-top: 1px solid var(--line); white-space: pre-wrap; word-break: break-word;
+  font: 400 0.86rem/1.6 "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink);
+  max-height: 460px; overflow: auto; user-select: all; -webkit-user-select: all;
+}
+
+/* ---------- Нотатки ---------- */
+.notes-btn { min-height: 44px; padding: 0 16px; font-size: 0.92rem; gap: 8px; }
+.count { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 0.78rem; font-weight: 700; }
+
+.insert { margin: 8px 0 0; font-size: 0.88rem; color: var(--mut); }
+.insert .row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.chipbtn { font: 600 0.84rem/1 "Plus Jakarta Sans", sans-serif; padding: 9px 12px; min-height: 38px; border-radius: 999px; border: 1px solid var(--sel-line); background: transparent; color: var(--ink); cursor: pointer; }
+.chipbtn:hover { background: var(--panel); color: var(--panel-ink); }
+
+dialog { width: min(640px, calc(100% - 24px)); max-height: min(90vh, 90dvh); padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); box-shadow: 0 24px 80px rgba(0,0,0,.35); overflow: auto; }
+dialog::backdrop { background: rgba(18, 38, 31, .6); }
+.dlg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.dlg-head h2 { font: 700 1.3rem/1.3 "Source Serif 4", Georgia, serif; margin: 0; }
+.icon-btn { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: var(--ink); font-size: 1.4rem; line-height: 1; cursor: pointer; }
+.icon-btn:hover { background: var(--panel); color: var(--panel-ink); }
+dialog h3 { font: 700 1rem/1.3 "Plus Jakarta Sans", sans-serif; margin: 22px 0 10px; }
+.note-item { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin: 0 0 10px; background: var(--card); }
+.note-item .top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 6px; }
+.note-item .when { font-size: 0.8rem; color: var(--mut); }
+.note-item pre { max-height: 130px; margin: 0 0 10px; padding: 10px 12px; font-size: 0.8rem; user-select: text; -webkit-user-select: text; background: var(--code); border: 1px solid var(--line); border-radius: 8px; }
+.note-item .actions button { min-height: 40px; padding: 10px 14px; font-size: 0.9rem; }
+.ghost.danger { background: var(--accent); color: var(--accent-ink); border-color: var(--ink-c); }
+.empty-notes { color: var(--mut); font-size: 0.92rem; margin: 0 0 8px; }
+.storage-warn { margin: 0 0 12px; }
 
 @media (max-width: 520px) {
   section { padding: 16px; }
-  .actions button { flex: 1 1 100%; }
+  .actions > button { flex: 1 1 100%; }
+  .open-row a { flex: 1 1 calc(33% - 10px); padding: 14px 10px; }
+  .open-row .lbl { flex: 1 1 100%; }
 }
 
-/* Шиммер/спотлайт тільки там, де є курсор і немає обмеження руху */
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  section { background-image: radial-gradient(400px circle at var(--mx, -999px) var(--my, -999px), rgba(16,185,129,.07), transparent 40%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *:before, *:after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-}
+@media (prefers-reduced-motion: reduce) { *, *:before, *:after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 
 @media print {
-  .bg-blobs, .top-bar, .actions, section:not(#s7) { display: none !important; }
+  .top-bar, .actions, .open-row, .howto, .how, section:not(#s7) { display: none !important; }
   section#s7 { border: 0; box-shadow: none; background: none; }
+  details.preview { border: 0; } details.preview > summary { display: none; }
   pre { max-height: none; }
 }
-
-/* ---------- Нове: картки промптів ---------- */
-.cards small.en { display: block; color: var(--mut); font-size: 0.8rem; font-weight: 500; margin: -2px 0 8px; }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
-.tag {
-  display: inline-block; font-size: 0.76rem; font-weight: 600; line-height: 1;
-  padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line);
-  color: var(--accent-green); background: var(--sel);
-}
-.tag.adult { color: var(--warn); border-color: var(--warn); background: transparent; }
-.tag.cat { color: var(--mut); background: transparent; }
-
-/* Кнопки-посилання й нотатки */
-button.link {
-  background: none; border: 0; padding: 0; margin: 0; font: inherit; font-weight: 600;
-  color: var(--acc-bright); text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
-}
-a.ghost { text-decoration: none; justify-content: center; }
-.notes-btn { min-height: 44px; padding: 0 16px; font-size: 0.92rem; gap: 8px; }
-.count {
-  display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px;
-  border-radius: 999px; background: var(--acc); color: #022c22; font-size: 0.78rem; font-weight: 700;
-}
-.open-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 14px 0 0; }
-.open-row .lbl { font-size: 0.88rem; color: var(--mut); font-weight: 600; margin-right: 2px; }
-.howto { margin: 12px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--sel); font-size: 0.88rem; line-height: 1.5; }
-.tip { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--mut); }
-
-/* Вставка збережених блоків під полем */
-.insert { margin: 8px 0 0; font-size: 0.85rem; color: var(--mut); }
-.insert .row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-.chipbtn {
-  font: 600 0.82rem/1 "Plus Jakarta Sans", sans-serif; padding: 9px 12px; min-height: 36px; border-radius: 999px;
-  border: 1px solid var(--line); background: var(--chip); color: var(--ink); cursor: pointer;
-  transition: border-color .2s, background-color .2s;
-}
-.chipbtn:hover { border-color: var(--acc); background: var(--sel); }
-.fieldhint { margin: 6px 0 0; font-size: 0.82rem; color: var(--mut); }
-
-/* Діалог нотаток */
-dialog {
-  width: min(640px, calc(100% - 24px)); max-height: min(90vh, 90dvh); padding: 20px;
-  border: 1px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink);
-  box-shadow: 0 24px 80px rgba(0,0,0,.45); overflow: auto;
-}
-dialog::backdrop { background: rgba(0, 10, 7, .62); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
-.dlg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-.dlg-head h2 { font: 700 1.25rem/1.3 "Plus Jakarta Sans", sans-serif; margin: 0; }
-.icon-btn {
-  width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: transparent;
-  color: var(--ink); font-size: 1.4rem; line-height: 1; cursor: pointer;
-}
-.icon-btn:hover { border-color: var(--acc); background: var(--sel); }
-dialog h3 { font: 600 1rem/1.3 "Plus Jakarta Sans", sans-serif; margin: 22px 0 10px; }
-.note-item { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin: 0 0 10px; background: var(--chip); }
-.note-item .top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 6px; }
-.note-item .when { font-size: 0.78rem; color: var(--mut); }
-.note-item pre { max-height: 130px; margin: 0 0 10px; padding: 10px 12px; font-size: 0.78rem; user-select: text; -webkit-user-select: text; }
-.note-item .actions button { min-height: 40px; padding: 10px 14px; font-size: 0.88rem; }
-.danger { color: var(--warn) !important; border-color: var(--warn) !important; }
-.empty-notes { color: var(--mut); font-size: 0.9rem; margin: 0 0 8px; }
-.storage-warn { margin: 0 0 12px; }
-
-.req { color: var(--warn); font-weight: 700; }
 
 </style>
 </head>
 <body>
-<div id="errBanner" hidden role="alert" style="position:fixed;left:12px;right:12px;bottom:12px;z-index:50;padding:12px 14px;border-radius:10px;background:#7f1d1d;color:#fff;font:14px/1.4 system-ui,sans-serif"></div>
+<div id="errBanner" hidden role="alert" style="position:fixed;left:12px;right:12px;bottom:12px;z-index:50;padding:12px 14px;border-radius:10px;background:#12261F;color:#F5F0E6;border:2px solid #E6C4BF;font:14px/1.4 system-ui,sans-serif"></div>
 <script>
 window.addEventListener("error",function(e){var b=document.getElementById("errBanner");if(!b)return;b.hidden=false;b.textContent="Помилка скрипта: "+(e.message||"невідома")+(e.lineno?" (рядок "+e.lineno+")":"")+". Надішліть цей текст розробнику."});
 </script>
 <a class="skip" href="#s1">Перейти до змісту</a>
-
-<div class="bg-blobs" aria-hidden="true">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-</div>
 
 <main>
 <div class="top-bar">
@@ -375,6 +348,12 @@ window.addEventListener("error",function(e){var b=document.getElementById("errBa
 
 <h1>Генератор промптів для вивчення англійської</h1>
 <p class="lead">Оберіть, що хочете потренувати, налаштуйте рівень і мову пояснень. У кінці з’явиться готовий промпт: відкрийте його в ChatGPT, Claude чи Gemini одним натисканням.</p>
+
+<ol class="how" aria-label="Як це працює">
+  <li><b>Оберіть</b><span>тему заняття й свій рівень</span></li>
+  <li><b>Налаштуйте</b><span>кілька деталей про себе</span></li>
+  <li><b>Вставте в чат</b><span>готовий промпт у ChatGPT, Claude чи Gemini</span></li>
+</ol>
 
 <noscript><p class="warn">Для роботи генератора потрібен JavaScript. Увімкніть його в налаштуваннях браузера.</p></noscript>
 
@@ -411,9 +390,8 @@ window.addEventListener("error",function(e){var b=document.getElementById("errBa
 </section>
 <section id="s7" hidden aria-labelledby="h-s7">
   <h2 id="h-s7">Готовий промпт</h2>
+  <p class="choice" id="choice"></p>
   <p class="warn" id="warn" hidden role="alert"></p>
-  <pre id="out" tabindex="0" aria-label="Готовий промпт"></pre>
-  <p class="meta" id="meta"></p>
 
   <div class="actions">
     <button type="button" class="action-btn" id="copy">
@@ -430,7 +408,12 @@ window.addEventListener("error",function(e){var b=document.getElementById("errBa
   <p class="howto"><b>Як це працює:</b> промпт копіюється автоматично й відкривається новий чат. Залишається вставити його в поле повідомлення (<b>Ctrl+V</b>, на Mac <b>⌘V</b>, на телефоні довге натискання → «Вставити») і надіслати.</p>
   <p class="note" id="status" role="status" aria-live="polite"></p>
 
-  <div class="actions" style="margin-top:6px">
+  <details class="preview" id="prevBox">
+    <summary><span id="prevTitle">Переглянути текст промпта</span><span class="meta" id="meta"></span></summary>
+    <pre id="out" tabindex="0" aria-label="Готовий промпт"></pre>
+  </details>
+
+  <div class="actions" style="margin-top:14px">
     <button type="button" class="ghost" id="dl">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
       Завантажити .txt
@@ -1789,7 +1772,9 @@ function render() {
   lastText = assemble(S.p, S, S.v);
   $("out").textContent = lastText;
   var words = lastText.split(/\s+/).filter(Boolean).length;
-  $("meta").textContent = "≈ " + words + " слів · " + lastText.length + " символів";
+  $("meta").textContent = "≈ " + words + " слів";
+  var lvT = LEVEL_UK[S.lv] || S.lv, lgT = (LANGS.filter(function (l) { return l[0] === S.lang; })[0] || [0, S.lang])[1];
+  $("choice").textContent = "Ваш вибір: " + catName(S.p.c) + " › " + (PROMPT_UK[S.p.id] || S.p.n) + " › " + lvT + " › " + lgT;
   var m = missing(), w = $("warn");
   if (m.length) {
     w.hidden = false;
@@ -1939,6 +1924,7 @@ function copyText(t, onOk, onFail) {
 }
 
 function selectOut() {
+  $("prevBox").open = true;
   try { var r = document.createRange(); r.selectNodeContents($("out")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
 }
 
@@ -2203,7 +2189,7 @@ function paintTheme() {
   var light = isLight();
   $("themeIcon").innerHTML = light ? moonSvg : sunSvg;
   $("themeToggle").setAttribute("aria-label", light ? "Увімкнути темну тему" : "Увімкнути світлу тему");
-  $("themeColor").setAttribute("content", light ? "#f0fdf4" : "#04120e");
+  $("themeColor").setAttribute("content", light ? "#F5F0E6" : "#12261F");
 }
 $("themeToggle").onclick = function () {
   var next = isLight() ? "dark" : "light";
@@ -2211,22 +2197,6 @@ $("themeToggle").onclick = function () {
   store("gen-theme", next); paintTheme();
 };
 paintTheme();
-
-/* ---------- підсвітка під курсором ---------- */
-if (window.matchMedia && matchMedia("(hover: hover)").matches) {
-  var raf = 0, ev = null;
-  document.addEventListener("mousemove", function (e) {
-    ev = e; if (raf) return;
-    raf = requestAnimationFrame(function () {
-      raf = 0;
-      var sec = ev.target.closest && ev.target.closest("section");
-      if (!sec) return;
-      var r = sec.getBoundingClientRect();
-      sec.style.setProperty("--mx", (ev.clientX - r.left) + "px");
-      sec.style.setProperty("--my", (ev.clientY - r.top) + "px");
-    });
-  }, { passive: true });
-}
 
 initNotes();
 reveal(0);
