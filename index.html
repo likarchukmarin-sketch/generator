@@ -4,11 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Генератор промптів для вивчення англійської</title>
-<meta name="description" content="Безкоштовний конструктор готових промптів для вивчення англійської з ШІ: 28 сценаріїв (слова, граматика, письмо, говоріння), рівні A1–C1. Відкрийте в ChatGPT, Claude чи Gemini.">
+<meta name="description" content="Безкоштовний генератор промптів для вивчення англійської з ШІ: слова, говоріння, граматика, письмо. Оберіть рівень, скопіюйте промпт і відкрийте в ChatGPT, Claude чи Gemini. Від репетиторки Марини Лікарчук.">
 <meta name="theme-color" content="#F5F0E6" id="themeColor">
-<meta property="og:title" content="Генератор промптів для вивчення англійської">
-<meta property="og:description" content="28 готових сценаріїв для занять англійською з ШІ. Оберіть рівень, скопіюйте промпт і починайте.">
+<link rel="canonical" href="https://likarchukmarin-sketch.github.io/generator/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:url" content="https://likarchukmarin-sketch.github.io/generator/">
+<meta property="og:title" content="Генератор промптів для вивчення англійської">
+<meta property="og:description" content="Готові промпти для занять англійською з ШІ: оберіть рівень, скопіюйте й починайте. Від репетиторки Марини Лікарчук.">
+<meta property="og:image" content="https://likarchukmarin-sketch.github.io/generator/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231F5A47'/%3E%3Ctext x='32' y='43' font-size='32' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%23F5F0E6'%3EEn%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -244,17 +251,17 @@ textarea { min-height: 110px; resize: vertical; }
 .warn { margin: 0 0 14px; padding: 12px 14px; border-radius: 10px; background: var(--accent); color: var(--accent-ink); font-size: 0.92rem; font-weight: 600; border: 1px solid var(--ink-c); }
 
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
-button.action-btn {
+.action-btn {
   font: 700 1rem/1 "Plus Jakarta Sans", sans-serif; padding: 14px 24px; min-height: 50px; border: 0; border-radius: 12px;
   background: var(--btn); color: var(--btn-ink); cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   transition: background-color .15s, transform .15s;
 }
-button.action-btn:hover { background: var(--btn-hover); }
-button.action-btn:active { transform: translateY(1px); }
-button.action-btn.done { background: var(--deep); color: var(--cream); }
-:root[data-theme="dark"] button.action-btn.done { background: var(--velvet); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) button.action-btn.done { background: var(--velvet); } }
+.action-btn:hover { background: var(--btn-hover); }
+.action-btn:active { transform: translateY(1px); }
+.action-btn.done { background: var(--deep); color: var(--cream); }
+:root[data-theme="dark"] .action-btn.done { background: var(--velvet); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .action-btn.done { background: var(--velvet); } }
 
 .ghost {
   font: 600 0.95rem/1 "Plus Jakarta Sans", sans-serif; padding: 14px 20px; min-height: 48px; border-radius: 12px; cursor: pointer;
@@ -326,6 +333,89 @@ dialog h3 { font: 700 1rem/1.3 "Plus Jakarta Sans", sans-serif; margin: 22px 0 1
   pre { max-height: none; }
 }
 
+/* =====================================================================
+   Етап 1–2: авторка, «Почни тут», швидкий шлях, заклик, футер
+   ===================================================================== */
+.theme-btn { margin-left: auto; }
+
+/* Блок авторки */
+.author {
+  display: flex; gap: 16px; align-items: flex-start; margin: 0 0 18px; padding: 16px 18px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow);
+}
+.avatar {
+  flex: none; width: 116px; height: 116px; border-radius: 50%; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--accent-ink); font: 700 1.5rem "Source Serif 4", Georgia, serif;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.author-text p { margin: 0; }
+.author-name { font: 700 1.15rem/1.3 "Source Serif 4", Georgia, serif; color: var(--head); }
+.author-line { margin-top: 2px !important; font-weight: 600; font-size: 0.98rem; line-height: 1.45; }
+.author-more { margin-top: 6px !important; color: var(--mut); font-size: 0.9rem; line-height: 1.5; }
+.author-links { margin-top: 8px !important; font-size: 0.92rem; }
+.author-links a, .foot a, .first a { color: var(--link); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 520px) { .author { gap: 12px; padding: 14px; } .avatar { width: 84px; height: 84px; font-size: 1.3rem; } .author-line { font-size: 0.93rem; } .author-more { font-size: 0.85rem; } }
+
+/* Швидкий шлях до Lab */
+.quick {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+  margin: 0 0 14px; padding: 16px 18px; background: var(--panel); color: var(--panel-ink); border-radius: 16px;
+}
+.quick > div { flex: 1 1 280px; }
+.quick p { margin: 0; }
+.quick-title { font: 700 1.1rem/1.3 "Source Serif 4", Georgia, serif; margin-bottom: 4px !important; }
+.quick-text { font-size: 0.95rem; line-height: 1.5; }
+:root:not([data-theme="dark"]) .quick .action-btn { background: var(--velvet); color: var(--cream); }
+:root[data-theme="dark"] .quick .action-btn { background: var(--blush); color: var(--ink-c); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .quick .action-btn { background: var(--blush); color: var(--ink-c); } }
+@media (max-width: 520px) { .quick .action-btn { width: 100%; } }
+
+/* «Перший раз у ШІ?» */
+details.first { margin: 0 0 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+details.first summary { cursor: pointer; padding: 13px 16px; font-weight: 600; list-style: none; display: flex; align-items: center; gap: 8px; }
+details.first summary::-webkit-details-marker { display: none; }
+details.first summary:before { content: "▸"; display: inline-block; transition: transform .15s; }
+details.first[open] summary:before { transform: rotate(90deg); }
+details.first ol { margin: 0; padding: 0 18px 14px 38px; font-size: 0.95rem; line-height: 1.55; }
+details.first li { margin: 0 0 8px; }
+
+/* «Почни тут» */
+section.plain { counter-increment: none !important; }
+section.plain h2:before { display: none; }
+.cards.feat { grid-template-columns: 1fr; }
+@media (min-width: 640px) { .cards.feat { grid-template-columns: 1fr 1fr; } }
+.cards.feat b { font-size: 1.12rem; }
+.allbar { margin: 0 0 18px; display: flex; }
+.allbar .ghost { width: 100%; }
+
+/* Налаштування: рівень + мова */
+.sub { font-weight: 700; font-size: 0.98rem; margin: 0 0 4px; }
+
+/* Заклик */
+.cta {
+  margin: 20px 0 0; padding: 18px; border-radius: 14px; background: var(--panel); color: var(--panel-ink);
+}
+.cta p { margin: 0; }
+.cta-title { font: 700 1.15rem/1.3 "Source Serif 4", Georgia, serif; margin-bottom: 6px !important; }
+.cta-text { font-size: 0.95rem; line-height: 1.5; margin-bottom: 14px !important; }
+.cta-sub { font-size: 0.85rem; margin-top: 10px !important; opacity: .9; }
+a.action-btn { text-decoration: none; display: inline-flex; }
+:root:not([data-theme="dark"]) .cta a.action-btn { background: var(--velvet); color: var(--cream); }
+:root:not([data-theme="dark"]) .cta a.action-btn:hover { background: var(--deep); }
+:root[data-theme="dark"] .cta a.action-btn { background: var(--blush); color: var(--ink-c); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cta a.action-btn { background: var(--blush); color: var(--ink-c); } }
+@media (max-width: 520px) { .cta a.action-btn { width: 100%; } }
+
+/* Футер */
+.foot { margin: 28px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line); text-align: center; font-size: 0.92rem; }
+.foot p { margin: 0 0 6px; }
+.foot-note { color: var(--mut); font-size: 0.84rem; }
+
+/* Нотатки: експорт нагорі */
+.exportbar { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 4px; }
+@media (max-width: 520px) { .exportbar .ghost { flex: 1 1 100%; } }
+
 </style>
 </head>
 <body>
@@ -333,11 +423,11 @@ dialog h3 { font: 700 1rem/1.3 "Plus Jakarta Sans", sans-serif; margin: 22px 0 1
 <script>
 window.addEventListener("error",function(e){var b=document.getElementById("errBanner");if(!b)return;b.hidden=false;b.textContent="Помилка скрипта: "+(e.message||"невідома")+(e.lineno?" (рядок "+e.lineno+")":"")+". Надішліть цей текст розробнику."});
 </script>
-<a class="skip" href="#s1">Перейти до змісту</a>
+<a class="skip" href="#sf">Перейти до змісту</a>
 
 <main>
 <div class="top-bar">
-  <button type="button" class="ghost notes-btn" id="notesOpen" aria-haspopup="dialog">
+  <button type="button" class="ghost notes-btn" id="notesOpen" aria-haspopup="dialog" hidden>
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M8 13h8M8 17h5"></path></svg>
     Мої нотатки <span class="count" id="notesCount" hidden>0</span>
   </button>
@@ -347,19 +437,49 @@ window.addEventListener("error",function(e){var b=document.getElementById("errBa
 </div>
 
 <h1>Генератор промптів для вивчення англійської</h1>
-<p class="lead">Оберіть, що хочете потренувати, налаштуйте рівень і мову пояснень. У кінці з’явиться готовий промпт: відкрийте його в ChatGPT, Claude чи Gemini одним натисканням.</p>
+<p class="lead">Оберіть, що хочете потренувати, і отримайте готовий промпт для ChatGPT, Claude чи Gemini. Кілька кліків, і ШІ веде заняття англійською.</p>
 
-<ol class="how" aria-label="Як це працює">
-  <li><b>Оберіть</b><span>тему заняття й свій рівень</span></li>
-  <li><b>Налаштуйте</b><span>кілька деталей про себе</span></li>
-  <li><b>Вставте в чат</b><span>готовий промпт у ChatGPT, Claude чи Gemini</span></li>
-</ol>
+<aside class="author" aria-label="Про авторку">
+  <div class="avatar" id="avatar" aria-hidden="true">МЛ</div>
+  <div class="author-text">
+    <p class="author-name">Марина Лікарчук</p>
+    <p class="author-line">Репетиторка, яка допомагає перейти від розуміння англійської до того, щоб нею говорити.</p>
+    <p class="author-more">Індивідуальні онлайн-заняття для дорослих і молоді, близько 4 років викладання, сертифікат TESOL/TEFL (120 год). Цей генератор один із моїх навчальних матеріалів.</p>
+    <p class="author-links"><a data-ig data-track="ig-author" data-title="Instagram (блок авторки)" href="https://www.instagram.com/marina.likarchuk/" target="_blank" rel="noopener noreferrer">Instagram</a> <span aria-hidden="true">·</span> <a data-site data-track="site-author" data-title="Мій сайт (блок авторки)" href="https://likarchukmarin-sketch.github.io/english/" target="_blank" rel="noopener noreferrer">Мій сайт</a></p>
+  </div>
+</aside>
 
 <noscript><p class="warn">Для роботи генератора потрібен JavaScript. Увімкніть його в налаштуваннях браузера.</p></noscript>
 
-<section id="s1" aria-labelledby="h-s1">
+<div class="quick">
+  <div>
+    <p class="quick-title">Хочу запам’ятовувати слова</p>
+    <p class="quick-text">Вставте свій список слів, і ШІ влаштує тренування: вправи, читання й підсумковий тест без підказок.</p>
+  </div>
+  <button type="button" class="action-btn" id="quickLab">Почати тренування слів</button>
+</div>
+
+<details class="first">
+  <summary>Перший раз працюєте з ШІ? Три прості кроки</summary>
+  <ol>
+    <li><b>Відкрийте чат.</b> Це може бути <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a>, <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a> або <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a>. Почати можна з безкоштовної версії.</li>
+    <li><b>Вставте промпт.</b> Тут натисніть «Скопіювати», а в чаті клікніть у поле повідомлення й вставте: Ctrl+V, на Mac ⌘V, на телефоні довге натискання → «Вставити». Надішліть.</li>
+    <li><b>Відповідайте по одному завданню.</b> ШІ веде заняття сам. Наприкінці він може дати блок для збереження: скопіюйте його в «Мої нотатки» на цій сторінці.</li>
+  </ol>
+</details>
+
+<section id="sf" class="plain" aria-labelledby="h-sf">
+  <h2 id="h-sf">Почни тут</h2>
+  <p class="hint">Шість промптів, з яких найкраще починати. Оберіть один.</p>
+  <div class="cards feat" id="feat" role="radiogroup" aria-labelledby="h-sf"></div>
+</section>
+
+<div class="allbar">
+  <button type="button" class="ghost" id="allToggle" aria-expanded="false" aria-controls="s1">Усі промпти</button>
+</div>
+
+<section id="s1" hidden aria-labelledby="h-s1">
   <h2 id="h-s1">Що хочете потренувати?</h2>
-  <p class="hint">Вперше тут? Почніть із категорії «З чого почати»: там можна визначити рівень і скласти план.</p>
   <div class="opts" id="cats" role="radiogroup" aria-labelledby="h-s1"></div>
   <div class="search" style="margin-top:14px"><input type="search" id="q" placeholder="Або знайдіть за словом: «слова», «співбесіда», «помилки»…" aria-label="Пошук промпта" autocomplete="off"></div>
 </section>
@@ -369,18 +489,17 @@ window.addEventListener("error",function(e){var b=document.getElementById("errBa
   <div class="cards" id="plist" role="radiogroup" aria-labelledby="h-s2"></div>
 </section>
 <section id="s3" hidden aria-labelledby="h-s3">
-  <h2 id="h-s3">Ваш рівень англійської</h2>
-  <p class="hint">Оцініть себе приблизно: це лише відправна точка. Не впевнені? Оберіть «Не знаю»: ШІ уточнить за першими відповідями. <span id="lvlTest"><button type="button" class="link" id="goLevel">Пройти тест рівня</button></span></p>
-  <div class="opts" id="level" role="radiogroup" aria-labelledby="h-s3"></div>
-</section>
-<section id="s4" hidden aria-labelledby="h-s4">
-  <h2 id="h-s4">Якою мовою ШІ пояснюватиме?</h2>
+  <h2 id="h-s3">Рівень і мова пояснень</h2>
+  <p class="sub" id="lbl-level">Ваш рівень англійської</p>
+  <p class="hint">Оцініть себе приблизно: це лише відправна точка. «Не знаю» теж підходить: ШІ уточнить за першими відповідями. <span id="lvlTest"><button type="button" class="link" id="goLevel">Пройти тест рівня</button></span></p>
+  <div class="opts" id="level" role="radiogroup" aria-labelledby="lbl-level"></div>
+  <p class="sub" id="lbl-lang" style="margin-top:18px">Якою мовою ШІ пояснюватиме?</p>
   <p class="hint">Вправи й приклади завжди будуть англійською. Тут обирається мова пояснень, підказок і відгуку.</p>
-  <div class="opts" id="lang" role="radiogroup" aria-labelledby="h-s4"></div>
+  <div class="opts" id="lang" role="radiogroup" aria-labelledby="lbl-lang"></div>
 </section>
 <section id="s5" hidden aria-labelledby="h-s5">
   <h2 id="h-s5">Лексика 18+ (необов’язково)</h2>
-  <p class="hint">Дозволяє ШІ пояснювати лайку, сленг і табу-лексику як викладач. Вмикайте, лише якщо вам є 18 років. Деякі платформи можуть обмежувати такі відповіді.</p>
+  <p class="hint">Дозволяє ШІ пояснювати лайку, сленг і табу-лексику як викладач. Вмикайте, лише якщо вам є 18 років.</p>
   <div class="opts" id="mode" role="radiogroup" aria-labelledby="h-s5"></div>
 </section>
 <section id="s6" hidden aria-labelledby="h-s6">
@@ -422,8 +541,22 @@ window.addEventListener("error",function(e){var b=document.getElementById("errBa
   </div>
 
   <p class="tip"><b>Після заняття:</b> якщо ШІ дав блок <b>WORDS TO SAVE</b>, <b>MISTAKES TO SAVE</b>, <b>MY LEVEL SUMMARY</b> чи <b>SCENARIO</b>, скопіюйте його й збережіть у <button type="button" class="link" id="notesOpen2">«Моїх нотатках»</button>. Наступного разу його можна вставити в потрібний промпт одним натисканням.</p>
+
+  <div class="cta">
+    <p class="cta-title">Хочете практикувати говоріння з живою людиною?</p>
+    <p class="cta-text">Індивідуальні онлайн-заняття, де можна помилятися без осуду. Безкоштовна консультація 20–40 хв у Zoom, без зобов’язань.</p>
+    <a class="action-btn" data-ig data-track="cta-result" data-title="Заклик після промпта" href="https://www.instagram.com/marina.likarchuk/" target="_blank" rel="noopener noreferrer">Пробне заняття зі мною</a>
+    <p class="cta-sub">Напишіть мені в Instagram, і ми домовимося про зручний час.</p>
+  </div>
+
   <p class="note">ШІ може помилятися, а між чатами він вас, як правило, не пам’ятає: важливі результати зберігайте самі. Це навчальна допомога, а не заміна викладача. Вимову ШІ надійно не оцінює.</p>
 </section>
+
+<footer class="foot">
+  <p class="foot-line"><b>Марина Лікарчук</b> · репетиторка англійської</p>
+  <p class="foot-links"><a data-ig data-track="cta-footer" data-title="Заклик у футері" href="https://www.instagram.com/marina.likarchuk/" target="_blank" rel="noopener noreferrer">Пробне заняття зі мною в Instagram</a> <span aria-hidden="true">·</span> <a data-site data-track="site-footer" data-title="Мій сайт (футер)" href="https://likarchukmarin-sketch.github.io/english/" target="_blank" rel="noopener noreferrer">Мій сайт</a></p>
+  <p class="foot-note">Генератор працює у вашому браузері: ваші тексти й нотатки нікуди не надсилаються.</p>
+</footer>
 </main>
 
 <dialog id="notesDlg" aria-labelledby="notesTitle">
@@ -431,9 +564,16 @@ window.addEventListener("error",function(e){var b=document.getElementById("errBa
     <h2 id="notesTitle">Мої нотатки</h2>
     <button type="button" class="icon-btn" id="notesClose" aria-label="Закрити">×</button>
   </div>
-  <p class="hint">Тут зберігаються блоки з відповідей ШІ (WORDS TO SAVE, MISTAKES TO SAVE, MY LEVEL SUMMARY, SCENARIO). Вони лишаються <b>лише в цьому браузері на цьому пристрої</b>. Щоб перенести на інший, скористайтеся експортом.</p>
+  <p class="hint"><b>Нотатки зберігаються лише в цьому браузері на цьому пристрої.</b> Якщо очистити дані сайту або змінити пристрій, вони зникнуть. Робіть експорт у файл хоча б раз на тиждень.</p>
+  <div class="exportbar">
+    <button type="button" class="ghost" id="noteExport">Експорт у файл</button>
+    <button type="button" class="ghost" id="noteImportBtn">Імпорт із файла</button>
+    <input type="file" id="noteImport" accept="application/json,.json" hidden>
+  </div>
+  <p class="note" id="exportInfo" style="margin-top:8px"></p>
   <p class="warn storage-warn" id="storageWarn" hidden>Браузер не дозволяє зберігати дані (можливо, приватний режим). Нотатки зникнуть після закриття сторінки: зробіть експорт у файл.</p>
 
+  <h3>Додати нотатку</h3>
   <div class="fl">
     <label for="noteText">Вставте блок із чату</label>
     <textarea id="noteText" placeholder="Скопіюйте блок із відповіді ШІ й вставте сюди"></textarea>
@@ -447,12 +587,6 @@ window.addEventListener("error",function(e){var b=document.getElementById("errBa
 
   <h3>Збережене (<span id="noteCount">0</span>)</h3>
   <div id="noteList"></div>
-
-  <div class="actions" style="margin-top:14px">
-    <button type="button" class="ghost" id="noteExport">Експорт у файл</button>
-    <button type="button" class="ghost" id="noteImportBtn">Імпорт із файла</button>
-    <input type="file" id="noteImport" accept="application/json,.json" hidden>
-  </div>
 </dialog>
 
 <script>
@@ -1699,8 +1833,47 @@ var NOTE_TYPES={words:"Слова",mistakes:"Помилки",level:"Рівень
 (function () {
 "use strict";
 
+/* ---------- НАЛАШТУВАННЯ (змінюйте тут) ---------- */
+var CONFIG = {
+  adultEnabled: false,   /* true повертає режим 18+ і Native Speaker Mode */
+  instagram: "https://www.instagram.com/marina.likarchuk/",
+  site: "https://likarchukmarin-sketch.github.io/english/",
+  photo: "data:image/jpeg;base64,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",   /* фото 320×320 (data:URL); порожньо = ініціали «МЛ» */
+  goatcounter: "marynalikarchuk",   /* код GoatCounter (адреса https://КОД.goatcounter.com); порожньо = аналітика вимкнена */
+  featured: ["lvl", "lab", "partner", "role", "say", "traps"]   /* «Почни тут» */
+};
+var P = (window.P || []).filter(function (p) { return CONFIG.adultEnabled || p.id !== "native"; });
+function adultOn(p) { return !!(CONFIG.adultEnabled && p && p.adult); }
+
 var $ = function (i) { return document.getElementById(i); };
-var S = { c: null, p: null, lv: null, lang: null, mode: "OFF", v: [], q: "" };
+var S = { c: null, p: null, lv: null, lang: null, mode: "OFF", v: [], q: "", all: false };
+
+/* ---------- аналітика GoatCounter (без cookie; вимкнена, поки CONFIG.goatcounter порожній) ---------- */
+var gcQueue = [], gcReady = false;
+function gcSend(ev) { try { window.goatcounter.count(ev); } catch (e) {} }
+function track(name, title) {
+  if (!CONFIG.goatcounter) return;
+  var ev = { path: name, title: title || name, event: true };
+  if (gcReady && window.goatcounter && window.goatcounter.count) gcSend(ev); else gcQueue.push(ev);
+}
+function loadAnalytics() {
+  if (!CONFIG.goatcounter) return;
+  var sc = document.createElement("script");
+  sc.async = true;
+  sc.src = "https://gc.zgo.at/count.js";
+  sc.setAttribute("data-goatcounter", "https://" + CONFIG.goatcounter + ".goatcounter.com/count");
+  sc.onload = function () {
+    var t = setInterval(function () {
+      if (!window.goatcounter || !window.goatcounter.count) return;
+      clearInterval(t); gcReady = true;
+      gcQueue.forEach(gcSend); gcQueue = [];
+    }, 100);
+    setTimeout(function () { clearInterval(t); }, 10000);
+  };
+  document.head.appendChild(sc);
+  var fn = document.querySelector(".foot-note");
+  if (fn) fn.textContent += " Відвідування рахуються анонімно, без cookie (GoatCounter).";
+}
 
 /* ---------- сховище (localStorage може бути недоступним) ---------- */
 function store(k, v) {
@@ -1739,7 +1912,7 @@ function radios(box, name, items, sel, cb) {
 function assemble(p, s, vals) {
   vals = vals || [];
   var a = "About me:\n- " + (p.ll || "My level") + ": " + s.lv + "\n- Language for explanations: " + s.lang + "\n";
-  if (p.adult) a += "- Adult mode: " + (s.mode || "OFF") + "\n";
+  if (adultOn(p)) a += "- Adult mode: " + (s.mode || "OFF") + "\n";
   (p.f || []).forEach(function (f, i) {
     var v = f.t === "s" ? (vals[i] || f.o[0]) : (vals[i] || "");
     if (!v) { if (f.opt) return; v = f.ph; }
@@ -1748,6 +1921,7 @@ function assemble(p, s, vals) {
   var ls = p.ls === undefined ? " If my level is A1-A2 and I chose Ukrainian, write task instructions in Ukrainian too." : (p.ls ? " " + p.ls : "");
   var lang = "IMPORTANT LANGUAGE RULE: Write ALL of your own text (" + (p.lt || "instructions, hints, explanations, feedback, summaries") + ") in the language I chose. Only " + p.en + " in English." + ls;
   var ad = "ADULT MODE (applies only if I wrote ON): I am an adult (18+) and I am learning real-life English, including swearing, slang, and sexual or offensive language. If " + (p.adw || "a word or expression") + " is vulgar, offensive, sexual, or taboo: do not refuse and do not only say \"this is a bad word\". Explain it like a language teacher: the meaning in plain language, the closest Ukrainian equivalent(s) (or say there is none), how strong it is (mild / strong / very offensive), when it is acceptable and when it is risky, and 1-2 milder alternatives. Keep examples short and not graphic. If it is a slur against a group of people, explain what it means and why it is offensive so I can recognise it, but do not encourage me to use it. If Adult mode is OFF and an item is vulgar, say so in one short line and tell me I can switch Adult mode ON.";
+  if (!adultOn(p)) ad = "If " + (p.adw || "a word or expression") + " is vulgar, offensive, sexual, or taboo: do not refuse and do not only say \"this is a bad word\". Explain it like a language teacher so I can understand and recognise it: the meaning in plain language, the closest Ukrainian equivalent(s) (or say there is none), how strong it is (mild / strong / very offensive), when it is acceptable and when it is risky, and 1-2 milder alternatives. Keep examples short and not graphic. If it is a slur against a group of people, explain what it means and why it is offensive so I can recognise it, but do not encourage me to use it.";
   return p.b.replace("{ABOUT}", function () { return a.trim(); })
             .replace("{LANG}", function () { return lang; })
             .replace("{CHECK}", function () { return CHECK; })
@@ -1764,7 +1938,7 @@ function missing() {
   return m;
 }
 
-function ready() { return S.p && S.lv && S.lang && (!S.p.adult || S.mode); }
+function ready() { return S.p && S.lv && S.lang && (!adultOn(S.p) || S.mode); }
 
 var lastText = "";
 function render() {
@@ -1792,10 +1966,10 @@ function scrollToId(id) {
 var shown = {};
 function reveal(doScroll) {
   var st = {
-    s2: !!(S.c || S.q),
+    s1: !!S.all,
+    s2: !!(S.all && (S.c || S.q)),
     s3: !!S.p,
-    s4: !!(S.p && S.lv),
-    s5: !!(S.p && S.p.adult && S.lang),
+    s5: !!(S.p && adultOn(S.p) && S.lang),
     s6: !!(ready() && (S.p.f || []).length),
     s7: !!ready()
   };
@@ -1813,6 +1987,7 @@ function levels() {
   var r = S.p.lv.split("-"), a = LV.indexOf(r[0]), z = LV.indexOf(r[1]);
   var it = LV.slice(a, z + 1).concat(["not sure"]).map(function (x) { return [x, LEVEL_UK[x] || x]; });
   if (S.lv && !it.some(function (x) { return x[0] === S.lv; })) S.lv = null;
+  if (!S.lv) S.lv = "not sure";   /* розумне значення за замовчуванням: можна змінити */
   radios($("level"), "lv", it, S.lv, function (v) { S.lv = v; reveal(1); render(); });
   $("lvlTest").hidden = S.p.id === "lvl";
 }
@@ -1864,7 +2039,35 @@ function fields() {
 }
 
 /* ---------- промпти ---------- */
-function pickPrompt(p) { S.p = p; levels(); fields(); reveal(1); render(); }
+function syncFeat() {
+  document.querySelectorAll("#feat input").forEach(function (i) { i.checked = !!S.p && i.value === S.p.id; });
+}
+
+function pickPrompt(p) {
+  track("pick-" + p.id, "Обрано промпт: " + (PROMPT_UK[p.id] || p.n));
+  S.p = p; levels(); fields(); syncFeat(); reveal(0); render();
+  setTimeout(function () { scrollToId("s3"); }, 60);
+}
+
+function cardFor(p, name, showCat, onpick) {
+  var lab = el("label"), i = el("input");
+  i.type = "radio"; i.name = name; i.value = p.id;
+  if (S.p === p) i.checked = true;
+  i.onchange = onpick;
+  var s = el("span");
+  var ukTitle = PROMPT_UK[p.id];
+  s.appendChild(el("b", "", ukTitle || p.n));
+  if (ukTitle) s.appendChild(el("small", "en", p.n));
+  var tags = el("div", "tags");
+  tags.appendChild(el("span", "tag", "Рівні " + p.lv.replace("-", "–")));
+  tags.appendChild(el("span", "tag", p.t));
+  if (adultOn(p)) tags.appendChild(el("span", "tag adult", "є режим 18+"));
+  if (showCat) tags.appendChild(el("span", "tag cat", catName(p.c)));
+  s.appendChild(tags);
+  s.appendChild(el("div", "desc", p.d));
+  lab.appendChild(i); lab.appendChild(s);
+  return lab;
+}
 
 function list() {
   var b = $("plist"); b.innerHTML = "";
@@ -1875,34 +2078,33 @@ function list() {
     return p.c === S.c;
   });
   if (!items.length) { b.appendChild(el("p", "empty", "Нічого не знайдено. Спробуйте інше слово або оберіть категорію.")); return; }
-  items.forEach(function (p) {
-    var lab = el("label"), i = el("input");
-    i.type = "radio"; i.name = "prompt"; i.value = p.id;
-    if (S.p === p) i.checked = true;
-    i.onchange = function () { pickPrompt(p); };
-    var s = el("span");
-    var ukTitle = PROMPT_UK[p.id];
-    s.appendChild(el("b", "", ukTitle || p.n));
-    if (ukTitle) s.appendChild(el("small", "en", p.n));
-    var tags = el("div", "tags");
-    tags.appendChild(el("span", "tag", "Рівні " + p.lv.replace("-", "–")));
-    tags.appendChild(el("span", "tag", p.t));
-    if (p.adult) tags.appendChild(el("span", "tag adult", "є режим 18+"));
-    if (q) tags.appendChild(el("span", "tag cat", catName(p.c)));
-    s.appendChild(tags);
-    s.appendChild(el("div", "desc", p.d));
-    lab.appendChild(i); lab.appendChild(s);
-    b.appendChild(lab);
+  items.forEach(function (p) { b.appendChild(cardFor(p, "prompt", !!q, function () { pickPrompt(p); })); });
+}
+
+function renderFeatured() {
+  var b = $("feat"); b.innerHTML = "";
+  CONFIG.featured.forEach(function (id) {
+    var p = P.filter(function (x) { return x.id === id; })[0]; if (!p) return;
+    b.appendChild(cardFor(p, "feat", false, function () { goPrompt(id); }));
   });
 }
 
+/* Перехід до промпта з «Почни тут» / швидких кнопок: список категорій не показуємо */
 function goPrompt(id) {
   var p = P.filter(function (x) { return x.id === id; })[0]; if (!p) return;
-  S.c = p.c; S.q = ""; $("q").value = "";
-  var ci = document.querySelector('#cats input[value="' + p.c + '"]'); if (ci) ci.checked = true;
-  list();
-  var pi = document.querySelector('#plist input[value="' + id + '"]'); if (pi) pi.checked = true;
+  S.c = null; S.q = ""; $("q").value = "";
+  document.querySelectorAll("#cats input").forEach(function (i) { i.checked = false; });
+  $("plist").innerHTML = "";
   pickPrompt(p);
+}
+
+function setAll(v) {
+  if (v && !S.all) track("all-prompts", "Відкрито «Усі промпти»");
+  S.all = v;
+  var t = $("allToggle");
+  t.setAttribute("aria-expanded", v ? "true" : "false");
+  t.textContent = v ? "Сховати список" : "Усі промпти (" + P.length + ")";
+  reveal(v ? 1 : 0);
 }
 
 /* ---------- копіювання / відкриття / завантаження ---------- */
@@ -1935,6 +2137,8 @@ function copyPrompt(where) {
       ? "Промпт скопійовано. У новій вкладці (" + where + ") вставте його: Ctrl+V (⌘V на Mac) і надішліть."
       : "Скопійовано. Вставте промпт у новий чат: Ctrl+V (⌘V на Mac).");
     lab.textContent = "Скопійовано!"; btn.classList.add("done");
+    markUsed();
+    if (!where) track("copy-" + (S.p ? S.p.id : "x"), "Скопійовано: " + (S.p ? (PROMPT_UK[S.p.id] || S.p.n) : ""));
     clearTimeout(copyPrompt._t);
     copyPrompt._t = setTimeout(function () { lab.textContent = "Скопіювати промпт"; btn.classList.remove("done"); }, 2500);
   }, function () {
@@ -1944,6 +2148,7 @@ function copyPrompt(where) {
 }
 
 function download() {
+  track("download", "Завантажено .txt");
   var t = lastText || $("out").textContent;
   var blob = new Blob([t], { type: "text/plain;charset=utf-8" });
   saveBlob(blob, "prompt-" + (S.p ? S.p.id : "english") + ".txt");
@@ -1958,6 +2163,16 @@ function saveBlob(blob, name) {
 
 /* ---------- Мої нотатки ---------- */
 var NOTE_KEY = "gen-notes", notes = [], memOnly = false;
+var used = store("gen-used") === "1";   /* кнопка «Мої нотатки» з’являється після першого використання */
+function updateNotesBtn() { $("notesOpen").hidden = !(notes.length || used); }
+function markUsed() { if (!used) { used = true; store("gen-used", "1"); updateNotesBtn(); } }
+function updateExportInfo() {
+  var box = $("exportInfo"), ts = +store("gen-export-ts") || 0;
+  if (!notes.length) { box.textContent = ""; return; }
+  if (!ts) { box.textContent = "Ви ще не робили експорт. Збережіть копію нотаток у файл."; return; }
+  var d = Math.floor((Date.now() - ts) / 86400000);
+  box.textContent = d < 1 ? "Останній експорт: сьогодні." : "Останній експорт: " + d + " " + plural(d, "день", "дні", "днів") + " тому." + (d >= 7 ? " Час зробити нову копію." : "");
+}
 
 function loadNotes() {
   try {
@@ -1993,6 +2208,7 @@ function addNote(text, type) {
   text = (text || "").replace(/\s+$/, "").replace(/^\s*\n/, "");
   if (!text.trim()) return "empty";
   if (notes.some(function (n) { return n.text === text; })) return "dup";
+  track("note-saved", "Збережено нотатку");
   notes.unshift({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), type: type || detectType(text), text: text, ts: Date.now() });
   if (notes.length > 300) notes.length = 300;
   saveNotes();
@@ -2066,12 +2282,12 @@ function refreshInserts() {
 function notesChanged() {
   var c = $("notesCount");
   c.textContent = notes.length; c.hidden = !notes.length;
-  renderNotes(); refreshInserts();
+  updateNotesBtn(); renderNotes(); refreshInserts(); updateExportInfo();
 }
 
 var dlg = $("notesDlg");
 function openNotes() {
-  renderNotes();
+  renderNotes(); updateExportInfo();
   $("noteStatus").textContent = "";
   if (dlg.showModal) { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute("open", "");
   setTimeout(function () { $("noteText").focus(); }, 30);
@@ -2092,14 +2308,16 @@ function initNotes() {
   $("noteAdd").onclick = function () {
     var t = $("noteText").value, ty = sel.value === "auto" ? null : sel.value;
     var r = addNote(t, ty), st = $("noteStatus");
-    if (r === "ok") { $("noteText").value = ""; sel.value = "auto"; st.textContent = "Збережено."; }
+    if (r === "ok") { $("noteText").value = ""; sel.value = "auto"; st.textContent = "Збережено. Нотатки лишаються лише в цьому браузері, тому час від часу робіть експорт."; }
     else if (r === "dup") st.textContent = "Такий блок уже збережено.";
     else st.textContent = "Спершу вставте текст блока.";
   };
 
   $("noteExport").onclick = function () {
     var blob = new Blob([JSON.stringify({ app: "english-prompt-generator", version: 1, notes: notes }, null, 2)], { type: "application/json" });
+    track("note-export", "Експорт нотаток");
     saveBlob(blob, "my-notes.json");
+    store("gen-export-ts", String(Date.now())); updateExportInfo();
     $("noteStatus").textContent = "Файл збережено.";
   };
   $("noteImportBtn").onclick = function () { $("noteImport").click(); };
@@ -2128,22 +2346,22 @@ function initNotes() {
 }
 
 /* ---------- старт ---------- */
+function catItems() {
+  return CATS.filter(function (c) { return P.some(function (p) { return p.c === c[0]; }); }).map(function (c) {
+    return [c[0], c[1] + " (" + P.filter(function (p) { return p.c === c[0]; }).length + ")"];
+  });
+}
+function pickCat(v) { S.c = v; S.p = null; S.v = []; S.q = ""; $("q").value = ""; syncFeat(); list(); reveal(1); }
+
 function restart() {
   S.c = null; S.p = null; S.lv = null; S.v = []; S.q = ""; S.mode = "OFF";
   $("q").value = ""; shown = {};
   radios($("cats"), "cat", catItems(), null, pickCat);
   radios($("mode"), "mode", MODES, "OFF", function (v) { S.mode = v; reveal(1); render(); });
   $("plist").innerHTML = "";
-  reveal(0);
+  syncFeat(); setAll(false);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
-function catItems() {
-  return CATS.filter(function (c) { return P.some(function (p) { return p.c === c[0]; }); }).map(function (c) {
-    return [c[0], c[1] + " (" + P.filter(function (p) { return p.c === c[0]; }).length + ")"];
-  });
-}
-function pickCat(v) { S.c = v; S.p = null; S.v = []; S.q = ""; $("q").value = ""; list(); reveal(1); }
 
 radios($("cats"), "cat", catItems(), null, pickCat);
 
@@ -2154,7 +2372,7 @@ $("q").oninput = function () {
   qt = setTimeout(function () {
     S.q = val;
     if (val) {
-      S.c = null; S.p = null; S.v = [];
+      S.c = null; S.p = null; S.v = []; syncFeat();
       document.querySelectorAll("#cats input").forEach(function (i) { i.checked = false; });
     }
     list(); reveal(0);
@@ -2167,15 +2385,33 @@ S.lang = savedLang;
 radios($("lang"), "lang", LANGS, S.lang, function (v) { S.lang = v; store("gen-lang", v); reveal(1); render(); });
 radios($("mode"), "mode", MODES, "OFF", function (v) { S.mode = v; reveal(1); render(); });
 
+$("allToggle").onclick = function () { setAll(!S.all); };
+$("quickLab").onclick = function () { track("quick-lab", "Швидкий шлях: слова"); goPrompt("lab"); };
 $("goLevel").onclick = function () { goPrompt("lvl"); };
 $("copy").onclick = function () { copyPrompt(); };
 ["openChatgpt", "openClaude", "openGemini"].forEach(function (id) {
   var a = $(id), name = a.textContent;
   /* Не скасовуємо перехід: посилання відкриється, а промпт тим часом скопіюється */
-  a.addEventListener("click", function () { copyPrompt(name); });
+  a.addEventListener("click", function () { track("open-" + name.toLowerCase(), "Відкрито в " + name); copyPrompt(name); });
 });
 $("dl").onclick = download;
 $("restart").onclick = restart;
+
+document.addEventListener("click", function (e) {
+  var t = e.target.closest && e.target.closest("[data-track]");
+  if (t) track(t.getAttribute("data-track"), t.getAttribute("data-title") || t.textContent.trim().slice(0, 60));
+});
+
+function initStatic() {
+  Array.prototype.forEach.call(document.querySelectorAll("a[data-ig]"), function (a) { a.href = CONFIG.instagram; });
+  Array.prototype.forEach.call(document.querySelectorAll("a[data-site]"), function (a) { a.href = CONFIG.site; });
+  if (CONFIG.photo) {
+    var av = $("avatar"), im = el("img");
+    im.alt = ""; im.src = CONFIG.photo;
+    im.onerror = function () { im.remove(); av.classList.remove("has-photo"); };
+    av.textContent = ""; av.appendChild(im); av.classList.add("has-photo");
+  }
+}
 
 /* ---------- тема ---------- */
 var sunSvg = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
@@ -2199,7 +2435,10 @@ $("themeToggle").onclick = function () {
 paintTheme();
 
 initNotes();
-reveal(0);
+initStatic();
+loadAnalytics();
+renderFeatured();
+setAll(false);
 })();
 
 </script>
